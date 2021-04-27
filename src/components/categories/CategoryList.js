@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react"
+import React, { useContext, useEffect } from "react"
 import { CategoryContext } from "./CategoryProvider"
 import Category from "./Category"
 import "./Category.css"
@@ -15,7 +15,7 @@ export const CategoryList = () => {
             <h1>Categories</h1>
 
             <button onClick={() => history.push("/categories/create")}>
-                New Category
+                Create Category
             </button>
 
             <div className="categories">
