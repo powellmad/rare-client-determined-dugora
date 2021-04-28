@@ -2,7 +2,6 @@ import React, { useRef } from "react"
 import { Link, useHistory } from "react-router-dom"
 import "./Auth.css"
 
-
 export const Login = () => {
     const email = useRef()
     const password = useRef()
@@ -19,7 +18,7 @@ export const Login = () => {
                 "Accept": "application/json"
             },
             body: JSON.stringify({
-                username: email.current.value,
+                email: email.current.value,
                 password: password.current.value
             })
         })
