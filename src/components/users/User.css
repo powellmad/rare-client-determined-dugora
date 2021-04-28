@@ -1,0 +1,14 @@
+.user-component {
+    margin: 20px;
+}
+
+.user-component h2 {
+    text-align: center;
+}
+
+.user-profile {
+    margin: auto;
+    padding: 50px;
+    background-color: bisque;
+    width: 40%;
+}
