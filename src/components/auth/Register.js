@@ -1,8 +1,9 @@
 import React, { useRef } from "react"
-import { Link } from "react-router-dom"
+import { Link, useHistory } from "react-router-dom"
 import "./Auth.css"
 
 export const Register = (props) => {
+    
     const firstName = useRef()
     const lastName = useRef()
     const email = useRef()
@@ -11,7 +12,7 @@ export const Register = (props) => {
     const verifyPassword = useRef()
     const passwordDialog = useRef()
 
-
+    const history = useHistory()
     // const existingUserCheck = () => {
     //     return fetch(`http://localhost:8088/Users?email=${email.current.value}`)
     //         .then(_ => _.json())
@@ -21,7 +22,7 @@ export const Register = (props) => {
     const handleRegister = (e) => {
         e.preventDefault()
 
-debugger
+
         if (password.current.value === verifyPassword.current.value) {         
             const newUser = {
                 "username": email.current.value,
@@ -44,12 +45,12 @@ debugger
                 },
                 body: JSON.stringify(newUser)
             })
-                .then(resp => resp.json)
+                .then(resp => resp.json())
                 .then(res => {
                     console.log('maybe valid')
                     if ("valid" in res && res.valid) {
                         localStorage.setItem("rare_user_id", res.token)
-                        props.history.push("/")
+                        history.push("/")
                     }
                     })
             }
@@ -57,7 +58,7 @@ debugger
             passwordDialog.current.showModal()
         }
     }
-debugger
+
     return (
         <main style={{ textAlign: "center" }}>
 
