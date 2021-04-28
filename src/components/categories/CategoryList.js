@@ -1,10 +1,13 @@
 import React, { useContext, useEffect } from "react"
 import { CategoryContext } from "./CategoryProvider"
-import Category from "./Category"
+import { useHistory } from 'react-router-dom';
+import { Category } from "./Category"
 import "./Category.css"
 
 export const CategoryList = () => {
     const { categories, getCategories } = useContext(CategoryContext)
+
+    const history = useHistory();
 
     useEffect(() => {
         getCategories()
@@ -20,7 +23,9 @@ export const CategoryList = () => {
 
             <div className="categories">
                 {
-                    categories.map(category => <Category key={category.id} category={category}/>)
+                    categories.map(category => {
+                        return <Category key={category.id} category={category}/>
+                    })
                 }
             </div>
         </div>

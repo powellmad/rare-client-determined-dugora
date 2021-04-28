@@ -5,7 +5,7 @@ import "./Category.css"
 
 export const CategoryForm = () => {
 
-    const { addCategory, getCategoryById } = useContext(CategoryContext)
+    const { addCategory, getCategoryById, updateCategory } = useContext(CategoryContext)
 
     const [category, setCategory] = useState({
         label: "",
@@ -31,12 +31,12 @@ export const CategoryForm = () => {
             setIsLoading(true);
   
         if (categoryId){
-                
-                updateCategory({
-                    id: category.id,
-                    label: category.label,
-        })
-          .then(() => history.push(`/categories/details/${category.id}`))
+
+            updateCategory({
+                id: category.id,
+                label: category.label,
+            })
+          .then(() => history.push("/categories"))
         } else {
             
             addCategory({
