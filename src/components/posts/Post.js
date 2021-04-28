@@ -10,6 +10,7 @@ export const Post = ({post}) => {
             { post.title }
         </Link>
         </h3>
+        <div className="post_publication_date">{ post.publication_date }</div>
     </section>
     )
 }
