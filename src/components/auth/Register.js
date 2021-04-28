@@ -11,19 +11,32 @@ export const Register = (props) => {
     const verifyPassword = useRef()
     const passwordDialog = useRef()
 
+
+    // const existingUserCheck = () => {
+    //     return fetch(`http://localhost:8088/Users?email=${email.current.value}`)
+    //         .then(_ => _.json())
+    //         .then(user => !!user.length)
+    // }
+
     const handleRegister = (e) => {
         e.preventDefault()
 
-        if (password.current.value === verifyPassword.current.value) {
+debugger
+        if (password.current.value === verifyPassword.current.value) {         
             const newUser = {
                 "username": email.current.value,
                 "first_name": firstName.current.value,
                 "last_name": lastName.current.value,
                 "email": email.current.value,
-                "password": password.current.value
+                "password": password.current.value,
+                "bio": bio.current.value,
+                "profile_image_url": "",
+                "created_on": Date.now(),
+                "active": 0
             }
-
-            return fetch("http://127.0.0.1:8088/register", {
+        
+        return fetch("http://127.0.0.1:8088/register", {
+            
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -31,18 +44,20 @@ export const Register = (props) => {
                 },
                 body: JSON.stringify(newUser)
             })
-                .then(res => res.json())
+                .then(resp => resp.json)
                 .then(res => {
+                    console.log('maybe valid')
                     if ("valid" in res && res.valid) {
                         localStorage.setItem("rare_user_id", res.token)
                         props.history.push("/")
                     }
-                })
-        } else {
+                    })
+            }
+         else {
             passwordDialog.current.showModal()
         }
     }
-
+debugger
     return (
         <main style={{ textAlign: "center" }}>
 
@@ -73,10 +88,15 @@ export const Register = (props) => {
                     <label htmlFor="verifyPassword"> Verify Password </label>
                     <input ref={verifyPassword} type="password" name="verifyPassword" className="form-control" placeholder="Verify password" required />
                 </fieldset>
+                <fieldset>
+                    <label htmlFor="bio"> Tell A Little About Yourself </label>
+                    <input ref={bio} type="text" name="bio" className="form-control" placeholder="Bio" required />
+                </fieldset>
                 <fieldset style={{
                     textAlign: "center"
                 }}>
-                    <button className="btn btn-1 btn-sep icon-send" type="submit">Register</button>
+                    <button className="btn btn-1 btn-sep icon-send" type="submit" >
+                        Register</button>
                 </fieldset>
             </form>
             <section className="link--register">
