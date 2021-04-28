@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react"
 import { PostContext } from "./PostProvider"
-// import "./Post.css"
+import "./Post.css"
 import { useParams, useHistory } from "react-router-dom"
 
 export const PostDetail = () => {
@@ -15,7 +15,7 @@ export const PostDetail = () => {
         console.log("useEffect", postId)
         getPostById(postId)
         .then((response) => {
-        setPosts(response)
+            setPosts(response)
         })
     }, [])
 

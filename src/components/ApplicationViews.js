@@ -7,29 +7,29 @@ import { PostDetail } from "./posts/PostDetail"
 
 export const ApplicationViews = () => {
     return (
-    <>
-        <main style={{
-            margin: "5rem 2rem",
-            lineHeight: "1.75rem"
-        }}>
-        </main>
-
-            {/* Render the location list when http://localhost:3000/ */}
-            <Route exact path="/">
-                <PostList />
-            </Route>
-
-            <PostProvider>
-                    <Route exact path="/posts">
-                        <PostList />
-                    </Route>
-                    <Route path="/posts/detail/:postId(\d+)">
-                        <PostDetail/>
-                    </Route>
-                    {/* <Route path="/posts/create">
-                        <PostForm />
-                    </Route>     */}
-            </PostProvider>    
-    </>
-    )
+        <>
+            {/* <main style={{
+                margin: "5rem 2rem",
+                lineHeight: "1.75rem"
+            }}>
+            </main> */}
+    
+                {/* Render the post list when http://localhost:3000/ */}
+                <Route exact path="/">
+                    {/* <PostList /> */}
+                </Route> 
+    
+                <PostProvider>
+                        <Route exact path="/posts">
+                            <PostList />
+                        </Route>
+                        <Route path="/posts/detail/:postId(\d+)">
+                            <PostDetail/>
+                        </Route>
+                        <Route path="/posts/create">
+                            {/* <PostForm /> */}
+                        </Route>
+                </PostProvider>    
+        </>
+        )
 }
