@@ -1,6 +1,6 @@
 import React, { useEffect, useContext, useState } from "react"
 import { PostContext } from "./PostProvider"
-// import { Post } from "./Post"
+import { Post } from "./Post"
 // import "./Post.css"
 import { useHistory } from "react-router-dom"
 

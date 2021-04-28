@@ -16,7 +16,7 @@ export const ApplicationViews = () => {
 
             {/* Render the location list when http://localhost:3000/ */}
             <Route exact path="/">
-                <Home />
+                <PostList />
             </Route>
 
             <PostProvider>
