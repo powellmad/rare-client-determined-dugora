@@ -1,18 +1,40 @@
-@import url("https://fonts.googleapis.com/css?family=Comfortaa|Patua+One");
+@import url("https://fonts.googleapis.com/css?family=Shippori+Mincho|Arial");
 /*Typography
 --------------------------------------------------------------*/
 
-body, button, input, select, textarea {
-    color: #404040;
-    font-family: "Comfortaa", Arial, sans-serif;
+body, input, select, textarea {
+    color: black;
+    font-family: 'Helvetica Neue', serif;
     font-size: 1rem;
     line-height: 1.5;
     padding: 0;
-    margin: 0;
+	margin: 0;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    font-family: "Patua One", serif;
+button {
+	font-family: 'Helvetica Neue', serif;
+	font-size: 1rem;
+    line-height: 1.5;
+	padding: 7px 18px;
+	border: 1px solid transparent;
+	border-radius: 12px;
+	background-color: seashell;
+	color: #b7410e;
+	cursor: pointer;
+}
+
+h1 {
+	font-family: 'Georgia', serif;
+	font-weight: normal;
+}
+
+h3 {
+	font-weight: normal;
+}
+
+h2, h4, h5, h6 {
+    font-family: 'Georgia', serif;
+	font-weight: normal;
     letter-spacing: 2px;
 }
 
@@ -24,10 +46,11 @@ code {
 .fakeLink {
     color: -webkit-link;
     cursor: pointer;
-    text-decoration: underline;
     background: none!important;
     border: none;
     cursor: pointer;
+	color: black;
+	font-family: 'Helvetica Neue', serif;
 }
 
 .fakeLink:hover {
