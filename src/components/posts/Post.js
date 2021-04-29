@@ -3,6 +3,7 @@ import "./Post.css"
 import { Link } from "react-router-dom"
 
 export const Post = ({post}) => {
+    console.log(post, 'post')
     return (
     <section className="post">
         <h3 className="post__title">

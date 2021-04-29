@@ -39,7 +39,7 @@ export const PostList = () => {
         
         <div className="posts">
         {
-        filteredPosts.map(post => {
+        posts.map(post => {
             return <Post key={post.id} post={post} />
         })
         }

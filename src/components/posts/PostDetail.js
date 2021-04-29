@@ -23,7 +23,7 @@ export const PostDetail = () => {
         <section className="post">
         <h3 className="post_title">{post.title}</h3>
         <div className="post_publication_date">Publised: {post.publication_date}</div>
-        <div className="post_image_url">Location: {post.image_url}</div>
+        <div className="post_image_url">Url: {post.image_url}</div>
         <div className="post_content">Content: {post.content}</div>
         </section>
     )
