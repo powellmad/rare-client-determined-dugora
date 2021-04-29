@@ -14,7 +14,7 @@ export const CategoryList = () => {
     }, [])
 
     return (
-        <div>
+        <div className="category__page">
             <h1>Categories</h1>
 
             <button onClick={() => history.push("/categories/create")}>
