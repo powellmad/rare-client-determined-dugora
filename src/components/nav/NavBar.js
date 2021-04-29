@@ -14,11 +14,18 @@ export const NavBar = () => {
                 <h3 className="rare__title">Rare Publishing</h3>
             </li>
             <li className="navbar__item">
+                <Link className="navbar__link" to="/">Home</Link>
+            </li>
+            <li className="navbar__item">
                 <Link className="navbar__link" to="/">Posts</Link>
+            </li>
+            <li className="navbar__item">
+                <Link className="navbar__link" to="/users">Users</Link>
             </li>
             <li className="navbar__item">
                 <Link className="navbar__link" to="/categories">Manage Categories</Link>
             </li>
+            <div>
             {
                 (localStorage.getItem("rare_user_id") !== null) ?
                     <li className="navbar__item">
@@ -37,7 +44,9 @@ export const NavBar = () => {
                             <Link className="nav-link" to="/register">Register</Link>
                         </li>
                     </>
-            }        </ul>
+            }
+            </div>
+        </ul>
             <hr></hr>
             </>
     )
