@@ -6,6 +6,10 @@ import { UserProvider } from "./users/UserProvider"
 import { CategoryProvider } from "./categories/CategoryProvider"
 import { CategoryList } from "./categories/CategoryList"
 import { CategoryForm } from "./categories/CategoryForm"
+import {PostProvider} from "./posts/PostProvider"
+import { PostList } from "./posts/PostList"
+import { PostDetail } from "./posts/PostDetail"
+// import { PostForm } from "./posts/PostForm"
 
 export const ApplicationViews = () => {
     return (
@@ -24,6 +28,17 @@ export const ApplicationViews = () => {
                 <UserProfile />
             </Route>
         </UserProvider>
+        <PostProvider>
+            <Route exact path="/posts">
+                <PostList />
+            </Route>
+            <Route path="/posts/detail/:postId(\d+)">
+                <PostDetail/>
+            </Route>
+            <Route path="/posts/create">
+                {/* <PostForm /> */}
+            </Route>
+        </PostProvider>  
         <CategoryProvider>
             <Route exact path="/categories">
                 <CategoryList />
