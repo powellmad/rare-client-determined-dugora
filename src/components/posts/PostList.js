@@ -4,6 +4,7 @@ import { Post } from "./Post"
 import "./Post.css"
 import { useHistory } from "react-router-dom"
 
+// this is a list of all the post
 export const PostList = () => {
     const { posts, getPosts, searchTerms } = useContext(PostContext)
     
