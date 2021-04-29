@@ -4,19 +4,35 @@
 
 body, input, select, textarea {
     color: black;
-    font-family: 'Shippori Mincho', serif;
+    font-family: 'Helvetica Neue', serif;
     font-size: 1rem;
     line-height: 1.5;
     padding: 0;
+	margin: 0;
 }
 
 button {
-	font-family: Arial, serif;
+	font-family: 'Helvetica Neue', serif;
 	font-size: 1rem;
     line-height: 1.5;
+	padding: 7px 18px;
+	border: 1px solid transparent;
+	border-radius: 12px;
+	background-color: seashell;
+	color: #b7410e;
+	cursor: pointer;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1 {
+	font-family: 'Georgia', serif;
+	font-weight: normal;
+}
+
+h3 {
+	font-weight: normal;
+}
+
+h2, h4, h5, h6 {
     font-family: 'Georgia', serif;
 	font-weight: normal;
     letter-spacing: 2px;

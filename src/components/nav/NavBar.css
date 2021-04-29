@@ -3,15 +3,21 @@
     /* flex-wrap: nowrap; */
     /* justify-content: left; */
     background-color: seashell;
+    margin: 0;
+    height: 200px;
 }
 
 .navbar__item {
     display: flex;
-    flex-basis: 20%;
+    flex-basis: 15%;
     justify-content: space-evenly;
     flex-basis: flex-end;
     list-style-type: none;
-    margin-top: 30px;
+    text-align: center;
+}
+
+.navbar__item:hover {
+    font-weight: bold;
 }
 
 a, a:visited {
@@ -26,6 +32,7 @@ a, a:visited {
 
 .navbar__logo {
     max-height: 6rem;
+    margin-top: 70px;
 }
 
 .logo {
@@ -34,11 +41,22 @@ a, a:visited {
 
 .rare__title {
     margin-left: 10px;
-    margin-top: 30px;
+    margin-top: 80px;
     font-family: 'Shippori Mincho', serif;
+    font-weight: bold;
 }
 
 .navbar__link {
-    margin-top: 30px;
     font-family: 'Helvetica Neue';
+    flex-basis: 15%;
+    border-bottom: 2px solid #b7410e;
+}
+
+hr {
+    width: 80%;
+}
+
+.navbar li {
+    align-self: flex-end;
+    margin-bottom: 50px;
 }

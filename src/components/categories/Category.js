@@ -28,12 +28,12 @@ export const Category = ( { category } ) => {
 
     return (
         <section className="category">
-            <h4 className="category__label">{ category.label }</h4>
-            <button classname="edit__button" onClick={() => {
+            <h3 className="category__label">{ category.label }</h3>
+            <button id="edit__button" onClick={() => {
                 history.push(`/categories/edit/${category.id}`)
                 }}>Edit
             </button>
-            <button classname="delete__button" onClick={handleDelete}>Remove</button>
+            <button id="delete__button" onClick={handleDelete}>Remove</button>
         </section>
     )
 }
