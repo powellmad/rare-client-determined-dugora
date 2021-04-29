@@ -1,17 +1,22 @@
-import React, { useEffect, useContext } from "react"
-import { EventContext } from "../event/EventProvider.js"
+import React, { useEffect, useContext, useState } from "react"
+import { UserContext } from "../users/UserProvider"
 import { HumanDate } from "../utils/HumanDate.js"
-import { ProfileContext } from "./AuthProvider.js"
+import { useParams } from "react-router-dom"
 import "./Profile.css"
 
+export const UserProfile = (ß) => {
+    const { getUserById } = useContext(UserContext)
 
-export const Profile = (props) => {
-    const { profile, getProfile } = useContext(ProfileContext)
-    const { leaveEvent } = useContext(EventContext)
+    const [user, setUser] = useState({})
+
+    const { userId } = useParams();
 
     useEffect(() => {
-        getProfile()
-    }, [])
+        getUserById(userId)
+          .then((response) => {
+            setUser(response)
+          })
+      }, [])
 
     return (
         <article className="profile">
@@ -23,50 +28,12 @@ export const Profile = (props) => {
                     <h3>Your Info</h3>
                 </header>
                 <div className="profile__name">
-                    Welcome: {profile.gamer && profile.gamer.user.first_name} {profile.gamer && profile.gamer.user.last_name}
+                    Welcome: {user.first_name} {user.last_name}
                 </div>
-                <div className="profile__username">Username: {profile.gamer && profile.gamer.user.username}</div>
-                <div className="profile__bio">About you: {profile.gamer && profile.gamer.bio}</div>
-            </section>
-            <section className="profile__registrations">
-                <header className="registrations__header">
-                    <h3>Your Events</h3>
-                </header>
-                <div className="registrations">
-                    {
-                        profile.events.map(event => {
-                            return <div key={event.id} className="registration">
-                                <div className="registration__game">{event.game.title}</div>
-                                <div>{event.description}</div>
-                                <div>
-                                    <HumanDate date={event.date} /> @ {event.time}
-                                </div>
-                                <button className="btn btn-3"
-                                    onClick={() => leaveEvent(event.id).then(getProfile)}
-                                >Leave</button>
-                            </div>
-                        })
-                    }
-                </div>
-            </section>
-            <section className="profile__games">
-                <header className="games__header">
-                    <h3>Your Games</h3>
-                </header>
-                <div className="games">
-                    {
-                        profile.gamer && profile.gamer.games.map(game => {
-                            return <section key={`game--${game.id}`} className="game">
-                                <div className="game__title">{game.title} by {game.maker}</div>
-                                <div className="game__players">{game.number_of_players} players needed</div>
-                                <div className="game__skillLevel">Skill level is {game.skill_level}</div>
-                                <button className="btn btn-4"
-                                    onClick={() => props.history.push(`/games/${game.id}/edit`)}
-                                >Edit</button>
-                            </section>
-                        })
-                    }
-                </div>
+                {user.profile_image_url ? <img src="{user.profile_image_url}" alt="user's profile image"/> : <img src="./images/default-profile-image.png" alt="default profile image"/> }
+                <div className="profile__username">Email: {user.email}</div>
+                <div className="profile__bio">About you: {user.bio}</div>
+                {/* <div className="user__created_on">Rare User Since: <HumanDate date={user.created_on}></HumanDate></div> */}
             </section>
         </article>
     )
