@@ -7,9 +7,11 @@ export const NavBar = () => {
     const history = useHistory()
 
     return (
+        <>
         <ul className="navbar">
-            <li className="navbar__item">
+            <li className="logo">
                 <img className="navbar__logo" src={Logo} />
+                <h3 className="rare__title">Rare Publishing</h3>
             </li>
             <li className="navbar__item">
                 <Link className="navbar__link" to="/">Posts</Link>
@@ -19,8 +21,8 @@ export const NavBar = () => {
             </li>
             {
                 (localStorage.getItem("rare_user_id") !== null) ?
-                    <li className="nav-item">
-                        <button className="nav-link fakeLink"
+                    <li className="navbar__item">
+                        <button className="nav-link fakeLink navbar__item"
                             onClick={() => {
                                 localStorage.removeItem("rare_user_id")
                                 history.push({ pathname: "/" })
@@ -36,5 +38,7 @@ export const NavBar = () => {
                         </li>
                     </>
             }        </ul>
+            <hr></hr>
+            </>
     )
 }
