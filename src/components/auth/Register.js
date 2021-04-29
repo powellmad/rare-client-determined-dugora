@@ -1,5 +1,6 @@
 import React, { useRef } from "react"
 import { Link, useHistory } from "react-router-dom"
+import { HumanDate } from "../utils/HumanDate"
 import "./Auth.css"
 
 export const Register = (props) => {
