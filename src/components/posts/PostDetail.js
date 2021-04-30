@@ -4,26 +4,26 @@ import "./Post.css"
 import { useParams, useHistory } from "react-router-dom"
 // import { Link } from "react-router-dom"
 
-export const PostDetail = () => {
-    const { getPostById } = useContext(PostContext)
+export const PostDetail = (props) => {
+    const { post, getPostById } = useContext(PostContext)
 
-    const [post, setPosts] = useState({})
+    // const [post, setPosts] = useState({})
 
     const {postId} = useParams();
     const history = useHistory();
 
     useEffect(() => {
+        debugger
         console.log("useEffect", postId)
         getPostById(postId)
-        .then((response) => {
-            setPosts(response)
-        })
+        // .then(setPosts)
     }, [])
 
     return (
+        
         <section className="post">
         <h3 className="post_title">{post.title}</h3>
-        <div className="post_publication_date">Publised: {post.publication_date}</div>
+        <div className="post_publication_date">Published: {post.publication_date}</div>
         {/* <Link to={post.image_url}>
             { post.image_url }
         </Link> */}
