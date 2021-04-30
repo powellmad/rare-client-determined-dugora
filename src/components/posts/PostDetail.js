@@ -6,6 +6,8 @@ import { useParams, useHistory } from "react-router-dom"
 
 export const PostDetail = (props) => {
     const { post, getPostById } = useContext(PostContext)
+    const { updatePost, deletePost } = useContext(PostContext)
+
 
     // const [post, setPosts] = useState({})
 
@@ -13,12 +15,11 @@ export const PostDetail = (props) => {
     const history = useHistory();
 
     useEffect(() => {
-        debugger
         console.log("useEffect", postId)
         getPostById(postId)
         // .then(setPosts)
     }, [])
-
+    
     return (
         
         <section className="post">
@@ -30,6 +31,11 @@ export const PostDetail = (props) => {
         <a className="post_image_url" href={ post.image_url } target="_blank">{ post.image_url }</a>
         {/* <div className="post_image_url" src={post.image_url }>Url: {post.image_url}</div> */}
         <div className="post_content">Content: {post.content}</div>
+        <button onClick={() => deletePost(post.id).then(() => history.push("/posts"))} >Delete Post</button>
+
+            <button onClick={() => {
+                props.history.push(`/posts/edit/${postId}`)
+            }}>Edit</button>
         </section>
     )
 }

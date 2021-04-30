@@ -33,8 +33,8 @@ const addPost = postObj => {
     .then(getPosts)
 }
 
-const deletePost = postObj => {
-    return fetch(`http://localhost:8088/posts/${postObj.id}`, {
+const deletePost = post => {
+    return fetch(`http://localhost:8088/posts/${post}`, {
       method: "DELETE"
     }).then(getPosts);
 };
