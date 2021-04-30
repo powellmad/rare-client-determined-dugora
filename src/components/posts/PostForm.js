@@ -8,8 +8,9 @@ export const PostForm = (props) => {
     const { categories, getCategories } = useContext(CategoryContext)
     const [editMode, editModeChanged] = useState(false);
     useEffect(() => {
+    
         getPosts()
-        .then(getCategories)
+        getCategories()
     }, [])
 
 
@@ -58,7 +59,7 @@ export const PostForm = (props) => {
         }
         setPost({ title: "", imageUrl: "", content: ""})
     }
-
+    
     return (
         <form className="postForm" action="/action_page.php">
             <h2 className="postForm__title">{editMode ? "Update Post" : "Create Post"}</h2>
@@ -92,7 +93,9 @@ export const PostForm = (props) => {
                         onChange={handleControlledInputChange}>
 
                         <option value="0">Select a Category</option>
-                        {categories.map(c => (
+                        {
+                        categories.map(c => (
+                            
                             <option key={c.id} value={c.id}>
                                 {c.label}
                             </option>
