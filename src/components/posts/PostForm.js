@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from "react"
 import { PostList } from "./PostList";
+import { HumanDate } from "../utils/HumanDate"
 import { PostContext } from "./PostProvider"
 import { CategoryContext } from "../categories/CategoryProvider"
 export const PostForm = (props) => {
@@ -47,11 +48,13 @@ export const PostForm = (props) => {
                 content: post.content
             })
         } else {
+            // const dateObj = new Date.now()
+            debugger
             addPost({
                 userId: parseInt(localStorage.getItem("rare_user_id")),
                 categoryId: parseInt(post.categoryId),
                 title: post.title,
-                publicationDate: Date.now(),
+                publicationDate: HumanDate(),
                 imageUrl: post.imageUrl,
                 content: post.content
             })
@@ -119,17 +122,7 @@ export const PostForm = (props) => {
                     <input type="submit"></input>
                 </div>
             </fieldset>
-            
-            {/* {
-        tags.map(tag => {
-          return <>
-          
-            <input type="radio" value={tag.id} name="tag_id"
-              onChange={handleControlledInputChange}
-            /> {tag.name}
-          </>
-        })
-      } */}
+
          <div>
                 <button type="submit"
                 onClick={evt => {

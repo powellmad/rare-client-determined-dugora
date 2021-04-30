@@ -19,7 +19,7 @@ export const Post = ({post}) => {
             { post.title }
         </Link>
         </h3>
-        {/* publication date to human reading */}
+
         <div className="post_content">{ post.publication_date }</div>
         <div className="post_content">{ post.content }</div>
 
