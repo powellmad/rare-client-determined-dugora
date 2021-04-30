@@ -10,10 +10,10 @@ import {PostProvider} from "./posts/PostProvider"
 import { PostList } from "./posts/PostList"
 import { PostDetail } from "./posts/PostDetail"
 import { PostForm} from "./posts/PostForm"
-
+import {HumanDate} from "./utils/HumanDate"
 // import { PostForm } from "./posts/PostForm"
 
-export const ApplicationViews = () => {
+export const ApplicationViews = (props) => {
     return (
     <>
         <main style={{
@@ -29,19 +29,23 @@ export const ApplicationViews = () => {
             <Route exact path="/users/profile/:userId(\d+)">
                 <UserProfile />
             </Route>
-        </UserProvider>
+        </UserProvider> 
         <CategoryProvider>
+           
         <PostProvider>
             <Route exact path="/posts">
                 <PostList />
             </Route>
-            <Route path="/posts/detail/:postId(\d+)">
-                <PostDetail/>
+            <Route path="/posts/detail/:postId(\d+)" render={
+                (props) => {return <PostDetail {...props}/>}
+            }>
+                
             </Route>
             <Route path="/posts/create">
                 <PostForm />
             </Route>
-        </PostProvider>  
+        </PostProvider> 
+        
         </CategoryProvider>
         <CategoryProvider>
             <Route exact path="/categories">
