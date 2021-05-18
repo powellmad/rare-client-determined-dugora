@@ -1,4 +1,3 @@
-
 import React, { useRef } from "react"
 import { Link, useHistory } from "react-router-dom"
 import "./Auth.css"
@@ -14,11 +13,6 @@ export const Register = (props) => {
     const passwordDialog = useRef()
 
     const history = useHistory()
-    // const existingUserCheck = () => {
-    //     return fetch(`http://localhost:8088/Users?email=${email.current.value}`)
-    //         .then(_ => _.json())
-    //         .then(user => !!user.length)
-    // }
 
     const handleRegister = (e) => {
         e.preventDefault()
@@ -48,10 +42,8 @@ export const Register = (props) => {
             })
                 .then(resp => resp.json())
                 .then(res => {
-                    console.log('maybe valid')
                     if ("valid" in res && res.valid) {
                         localStorage.setItem("rare_user_id", res.token)
-                        history.push("/")
                     }
                     })
             }
