@@ -1,14 +1,7 @@
 import React, { useState } from "react";
 
-/*
-    The context is imported and used by individual components
-    that need data
-*/
 export const TagContext = React.createContext();
 
-/*
- This component establishes what data can be used.
- */
 export const TagProvider = props => {
   const [tags, setTags] = useState([]);
 
@@ -17,14 +10,49 @@ export const TagProvider = props => {
       .then(res => res.json())
       .then(setTags);
   };
-  return (
-    <TagContext.Provider
-      value={{
-        tags,
-        getTags
-      }}
-    >
-      {props.children}
-    </TagContext.Provider>
-  );
-};
+
+  const getTagById = (id) => {
+    return fetch(`http://localhost:8088/tags/${id}`)
+        .then(res => res.json())
+  }
+
+    const addTag = (tag) => {
+        return fetch("http://localhost:8088/tags", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(tag)
+        })
+            .then(getTags)
+    }
+
+    const updateTag = tag => {
+    return fetch(`http://localhost:8088/tags/${tag.id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(tag)
+    })
+        .then(getTags)
+  }
+
+    const deleteTag = (tagId) => {
+    return fetch(`http://localhost:8088/tags/${tagId}`, {
+        method: "DELETE"
+    })
+        .then(getTags)
+  }
+
+
+
+    return (
+        <TagContext.Provider value={{
+            tags, addTag, getTags, updateTag, deleteTag, getTagById
+        }}>
+            {props.children}
+        </TagContext.Provider>
+    )
+}
+

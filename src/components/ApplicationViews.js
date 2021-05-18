@@ -11,6 +11,9 @@ import { PostList } from "./posts/PostList"
 import { PostDetail } from "./posts/PostDetail"
 import { PostForm} from "./posts/PostForm"
 import {HumanDate} from "./utils/HumanDate"
+import {TagProvider} from "./tags/TagProvider"
+import {TagForm} from "./tags/TagForm"
+import {TagList} from "./tags/TagList"
 // import { PostForm } from "./posts/PostForm"
 
 export const ApplicationViews = (props) => {
@@ -31,22 +34,23 @@ export const ApplicationViews = (props) => {
             </Route>
         </UserProvider> 
         <CategoryProvider>
-           
-        <PostProvider>
-            <Route exact path="/posts">
-                <PostList />
-            </Route>
-            <Route path="/posts/detail/:postId(\d+)" render={
-                (props) => {return <PostDetail {...props}/>}
-            }>
-                
-            </Route>
-            <Route path="/posts/create">
-                <PostForm />
-            </Route>
-        </PostProvider> 
-        
+            <PostProvider>
+                <TagProvider>   
+                    <Route exact path="/posts">
+                        <PostList />
+                    </Route>
+                    <Route path="/posts/detail/:postId(\d+)" render={
+                        (props) => {return <PostDetail {...props}/>}
+                    }>
+                        
+                    </Route>
+                    <Route path="/posts/create">
+                        <PostForm />
+                    </Route>
+                </TagProvider>
+            </PostProvider>
         </CategoryProvider>
+
         <CategoryProvider>
             <Route exact path="/categories">
                 <CategoryList />
@@ -60,6 +64,20 @@ export const ApplicationViews = (props) => {
                 <CategoryForm />
             </Route>
         </CategoryProvider>
+
+            {/* Tag Area    */}
+        <TagProvider>
+            <Route exact path="/tags">
+                <TagList />
+            </Route>
+
+            <Route exact path="/tags/edit/:tagId(\d+)">
+                <TagForm />
+            </Route>
+            <Route exact path="/tags/create">
+                <TagForm />
+            </Route>
+        </TagProvider>
     </>
     )
 }
