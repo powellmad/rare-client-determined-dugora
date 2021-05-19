@@ -15,16 +15,19 @@ export const NavBar = () => {
                     <h2 className="rare__title">Rare Publishing</h2>
                 </li>
                 <li className="navbar__item">
-                    <Link className="navbar__link" to="/">Home</Link>
+                    <Link className="navbar__link" to="/">All Posts</Link>
                 </li>
                 <li className="navbar__item">
-                    <Link className="navbar__link" to="/posts">Posts</Link>
+                    <Link className="navbar__link" to="/posts">My Posts</Link>
                 </li>
                 <li className="navbar__item">
-                    <Link className="navbar__link" to="/users">Users</Link>
+                    <Link className="navbar__link" to="/categories">Category Manager</Link>
                 </li>
                 <li className="navbar__item">
-                    <Link className="navbar__link" to="/categories">Categories</Link>
+                    <Link className="navbar__link" to="/tags">Tag Manager</Link>
+                </li>
+                <li className="navbar__item">
+                    <Link className="navbar__link" to="/users">User Manager</Link>
                 </li>
                 <div className="navbar__item">
                 {

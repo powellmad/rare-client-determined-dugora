@@ -1,19 +1,14 @@
 import React, { useContext, useEffect, useState } from "react"
 import { PostContext } from "./PostProvider"
 import "./Post.css"
-import { useParams, useHistory } from "react-router-dom"
-// import { Link } from "react-router-dom"
+import { useParams } from "react-router-dom"
 
 export const PostDetail = (props) => {
     console.log(props)
     const { post, getPostById } = useContext(PostContext)
     const { updatePost, deletePost } = useContext(PostContext)
 
-
-
-
     const {postId} = useParams();
-    const history = useHistory();
 
     useEffect(() => {
         console.log("useEffect", postId)
