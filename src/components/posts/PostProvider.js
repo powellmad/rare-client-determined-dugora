@@ -7,14 +7,16 @@ export const PostProvider = (props) => {
     const [posts, setPosts] = useState([])
     const [post, setPost] = useState({})
 
-  
-    const getPosts = () => {
-    
-    return fetch("http://localhost:8088/posts")
-        .then(response => response.json())
-        .then(setPosts);
-          
-    }
+      
+        const getPosts = () => {
+            return fetch("http://localhost:8000/posts", {
+                headers:{
+                    "Authorization": `Token ${localStorage.getItem("rare_user_id")}`
+                }
+            })
+                .then(response => response.json())
+                .then(setPosts)
+        }
 
     const getPostById = (id) => {
         return fetch(`http://localhost:8088/posts/${id}`)
