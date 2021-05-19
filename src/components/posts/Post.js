@@ -4,11 +4,12 @@ import { Link } from "react-router-dom"
 import { CategoryContext } from "../categories/CategoryProvider"
 
 export const Post = ({ post }) => {
-    const { categories, getCategories } = useContext(CategoryContext)
+    // const { categories, getCategories } = useContext(CategoryContext)
 
-    useEffect(() => {
-        getCategories()
-    }, [])
+
+    // useEffect(() => {
+    //     getCategories()
+    // }, [])
 
 
     return (
@@ -22,13 +23,7 @@ export const Post = ({ post }) => {
             {/* <div className="post_content">{post.publication_date}</div> */}
             <div className="post_content">{post.content}</div>
 
-            <div className="post_category">{
-                categories.map(category => {
-                    if (category.id == post.category_id) {
-                        return categories.label
-                    }
-                }
-                )} </div>
+            <div className="post_category">{post.category.label}</div>
 
             <div className="post_imageUrl">{post.imageUrl}</div>
         </section>
