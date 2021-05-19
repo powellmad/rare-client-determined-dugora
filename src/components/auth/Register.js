@@ -3,7 +3,7 @@ import { Link, useHistory } from "react-router-dom"
 import "./Auth.css"
 
 export const Register = (props) => {
-    
+
     const firstName = useRef()
     const lastName = useRef()
     const email = useRef()
@@ -17,8 +17,7 @@ export const Register = (props) => {
     const handleRegister = (e) => {
         e.preventDefault()
 
-
-        if (password.current.value === verifyPassword.current.value) {         
+        if (password.current.value === verifyPassword.current.value) {
             const newUser = {
                 "username": email.current.value,
                 "first_name": firstName.current.value,
@@ -28,11 +27,10 @@ export const Register = (props) => {
                 "bio": bio.current.value,
                 "profile_image_url": "",
                 "created_on": Date.now(),
-                "active": 0
+                "active": true
             }
-        
-        return fetch("http://127.0.0.1:8088/register", {
-            
+
+            return fetch("http://127.0.0.1:8000/register", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -44,10 +42,11 @@ export const Register = (props) => {
                 .then(res => {
                     if ("valid" in res && res.valid) {
                         localStorage.setItem("rare_user_id", res.token)
+                        history.push("/")
                     }
-                    })
-            }
-         else {
+                })
+        }
+        else {
             passwordDialog.current.showModal()
         }
     }
