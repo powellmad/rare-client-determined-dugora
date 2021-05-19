@@ -26,7 +26,6 @@ export const PostForm = (props) => {
     useEffect(() => {
         getCategories()
         .then(getPosts)
-        .then(getPostById)
     }, [])
 
     const handleControlledInputChange = (event) => {
@@ -40,12 +39,12 @@ export const PostForm = (props) => {
         setPost(newPost)
     }
 
-    const constructNewPost = (event) => {
+    const HandleSave = (event) => {
         const categoryId = post.categoryId
 
-        // if (categoryId === 0 ) {
-        //     window.alert("Please select a category")  
-        // } else {
+        if (categoryId === 0 ) {
+            window.alert("Please select a category")  
+        } else {
             setIsLoading(true);
             { postId ?
                 updatePost({
@@ -65,23 +64,24 @@ export const PostForm = (props) => {
                     imageUrl: post.imageUrl,
                     content: post.content
                 })
-                .then(() => history.push('/posts'))
+                .then(() => history.push('/'))
             }
         }
+    }
 
-        useEffect(() => {
-            getCategories().then(() => {
-              if (postId) {
-                getPostById(postId)
-                  .then(post => {
-                    setPost(post)
-                    setIsLoading(false)
-                  })
-              } else {
+    useEffect(() => {
+        getCategories().then(() => {
+            if (postId) {
+            getPostById(postId)
+                .then(post => {
+                setPost(post)
                 setIsLoading(false)
-              }
-            })
-          }, [])
+                })
+            } else {
+            setIsLoading(false)
+            }
+        })
+    }, [])
     
     return (
         <form className="postForm">
@@ -91,7 +91,6 @@ export const PostForm = (props) => {
                     <label htmlFor="title">Title: </label>
                     <input type="text" name="title" required autoFocus className="form-control"
                         placeholder="title"
-                        // value={post.title}
                         onChange={handleControlledInputChange}
                     />
                 </div>
@@ -103,7 +102,6 @@ export const PostForm = (props) => {
                     name="content" 
                     required autoFocus className="form-control"
                     placeholder="Begin new post..." 
-                    // value={post.content}
                     onChange={handleControlledInputChange}>
                     </textarea>
                 </div>
@@ -112,7 +110,6 @@ export const PostForm = (props) => {
                 <div className="form-group">
                     <label htmlFor="categoryId">Category: </label>
                     <select name="categoryId" className="form-control"
-                        // value={post.categoryId}
                         onChange={handleControlledInputChange}>
 
                         <option value="0">Select a Category</option>
@@ -131,7 +128,6 @@ export const PostForm = (props) => {
                     <input type="text" name="imageUrl" required className="form-control"
                         proptype="varchar"
                         placeholder="imageUrl"
-                        // value={post.imageUrl}
                         onChange={handleControlledInputChange}
                     />
                     <input type="file" id="myFile" name="filename"/>
@@ -141,7 +137,7 @@ export const PostForm = (props) => {
             <div>
                 <button className="btn btn-primary" 
                     disabled={isLoading}
-                    onClick={constructNewPost}>
+                    onClick={HandleSave}>
                     {postId ? "Update" : "Save"}
                 </button>
             </div>

@@ -19,6 +19,7 @@ export const ApplicationViews = (props) => {
             lineHeight: "1.75rem"
         }}>
         </main>
+
         <UserProvider>
             <Route exact path="/users">
                 <UserList />
@@ -34,11 +35,11 @@ export const ApplicationViews = (props) => {
             <Route exact path="/posts">
                 <PostList />
             </Route>
+
             <Route path="/posts/detail/:postId(\d+)" render={
-                (props) => {return <PostDetail {...props}/>}
-            }>
-                
+                (props) => {return <PostDetail {...props}/>}}>
             </Route>
+
             <Route path="/posts/create">
                 <PostForm />
             </Route>
