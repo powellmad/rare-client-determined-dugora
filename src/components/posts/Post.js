@@ -19,7 +19,7 @@ export const Post = ({ post }) => {
                 </Link>
             </h3>
 
-            <div className="post_content">{post.publication_date}</div>
+            {/* <div className="post_content">{post.publication_date}</div> */}
             <div className="post_content">{post.content}</div>
 
             <div className="post_category">{
