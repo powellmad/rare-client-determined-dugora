@@ -6,25 +6,36 @@ export const CategoryProvider = (props) => {
     const [categories, setCategories] = useState([])
 
     const getCategories = () => {
-        return fetch("http://localhost:8000/categories")
-            .then(res => res.json())
+        return fetch("http://localhost:8000/categories", {
+            headers:{
+                "Authorization": `Token ${localStorage.getItem("rare_user_id")}`
+            }
+        })
+            .then(response => response.json())
             .then(setCategories)
     }
 
-    const addCategory = category => {
-        return fetch("http://localhost:8000/categories", {
+    const addCategory = (category) => {
+        return fetch('http://localhost:8000/categories', {
             method: "POST",
             headers: {
-                "Content-Type": "application/json"
+                "Authorization": `Token ${localStorage.getItem('rare_user_id')}`,
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify(category)
         })
         .then(res => res.json())
     }
 
-    const getCategoryById = (id) => {
-        return fetch(`http://localhost:8000/categories/${id}`)
-            .then(res => res.json())
+    const getCategoryById = (categoryId) => {
+        return fetch(`http://localhost:8000/categories/${categoryId}`, {
+    
+            headers:{
+                "Authorization": `Token ${localStorage.getItem("rare_user_id")}`
+            },
+        })
+            .then(response => response.json())
+            .then(getCategories)
     }
 
     const updateCategory = category => {
@@ -36,15 +47,14 @@ export const CategoryProvider = (props) => {
           body: JSON.stringify(category)
         })
           .then(getCategories)
-      }
+    }
     
     const deleteCategory = categoryId => {
         return fetch(`http://localhost:8000/categories/${categoryId}`, {
             method: "DELETE"
+        .then(getCategories)
         })
-            .then(getCategories)
     }
-
     return (
         <CategoryContext.Provider value={{
             categories, getCategories, addCategory, getCategoryById, updateCategory, deleteCategory
