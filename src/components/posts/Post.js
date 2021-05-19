@@ -4,13 +4,6 @@ import { Link } from "react-router-dom"
 import { CategoryContext } from "../categories/CategoryProvider"
 
 export const Post = ({ post }) => {
-    // const { categories, getCategories } = useContext(CategoryContext)
-
-
-    // useEffect(() => {
-    //     getCategories()
-    // }, [])
-
 
     return (
         <section className="post">
