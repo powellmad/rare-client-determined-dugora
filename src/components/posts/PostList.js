@@ -14,22 +14,7 @@ export const PostList = (props) => {
     useEffect(() => {
         getPosts()
     }, []);
-    
 
-    
-    // useEffect dependency array with dependencies - will run if dependency changes (state)
-    // searchTerms will cause a change
-    // useEffect(() => {
-    //     if (searchTerms !== "") {
-    //         // If the search field is not blank, display matching posts
-    //         const subset = posts.filter(post => post.title.toLowerCase().includes(searchTerms))
-    //         setFiltered(subset)
-    //     } else {
-    //         // If the search field is blank, display all posts
-    //         setFiltered(posts)
-    //     }
-    //     }, [searchTerms, posts])
-    
     return (
     <>
         <h1>My Post</h1>

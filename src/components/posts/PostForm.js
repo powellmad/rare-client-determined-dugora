@@ -48,8 +48,6 @@ export const PostForm = (props) => {
                 content: post.content
             })
         } else {
-            // const dateObj = new Date.now()
-            debugger
             addPost({
                 userId: parseInt(localStorage.getItem("rare_user_id")),
                 categoryId: parseInt(post.categoryId),
@@ -58,7 +56,6 @@ export const PostForm = (props) => {
                 imageUrl: post.imageUrl,
                 content: post.content
             })
-            // .then(() => history.push("/posts"))
         }
         setPost({ title: "", imageUrl: "", content: ""})
     }

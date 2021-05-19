@@ -1,10 +1,9 @@
-
 import React, { useRef } from "react"
 import { Link, useHistory } from "react-router-dom"
 import "./Auth.css"
 
 export const Register = (props) => {
-    
+
     const firstName = useRef()
     const lastName = useRef()
     const email = useRef()
@@ -14,17 +13,11 @@ export const Register = (props) => {
     const passwordDialog = useRef()
 
     const history = useHistory()
-    // const existingUserCheck = () => {
-    //     return fetch(`http://localhost:8088/Users?email=${email.current.value}`)
-    //         .then(_ => _.json())
-    //         .then(user => !!user.length)
-    // }
 
     const handleRegister = (e) => {
         e.preventDefault()
 
-
-        if (password.current.value === verifyPassword.current.value) {         
+        if (password.current.value === verifyPassword.current.value) {
             const newUser = {
                 "username": email.current.value,
                 "first_name": firstName.current.value,
@@ -34,11 +27,10 @@ export const Register = (props) => {
                 "bio": bio.current.value,
                 "profile_image_url": "",
                 "created_on": Date.now(),
-                "active": 0
+                "active": true
             }
-        
-        return fetch("http://127.0.0.1:8088/register", {
-            
+
+            return fetch("http://127.0.0.1:8000/register", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -48,14 +40,13 @@ export const Register = (props) => {
             })
                 .then(resp => resp.json())
                 .then(res => {
-                    console.log('maybe valid')
                     if ("valid" in res && res.valid) {
                         localStorage.setItem("rare_user_id", res.token)
                         history.push("/")
                     }
-                    })
-            }
-         else {
+                })
+        }
+        else {
             passwordDialog.current.showModal()
         }
     }
