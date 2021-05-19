@@ -6,20 +6,29 @@ export const TagProvider = props => {
   const [tags, setTags] = useState([]);
 
   const getTags = () => {
-    return fetch("http://localhost:8088/tag")
+    return fetch("http://localhost:8000/tags", {
+        headers:{
+            "Authorization": `Token ${localStorage.getItem("rare_user_id")}`
+        }
+    })
       .then(res => res.json())
       .then(setTags);
   };
 
   const getTagById = (id) => {
-    return fetch(`http://localhost:8088/tags/${id}`)
+    return fetch(`http://localhost:8000/tags/${id}`, {
+        headers: {
+            "Authorization": `Token ${localStorage.getItem('rare_user_id')}`   
+         }
+    })
         .then(res => res.json())
   }
 
     const addTag = (tag) => {
-        return fetch("http://localhost:8088/tags", {
+        return fetch("http://localhost:8000/tags", {
             method: "POST",
             headers: {
+                "Authorization": `Token ${localStorage.getItem('rare_user_id')}`,
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(tag)
@@ -28,9 +37,10 @@ export const TagProvider = props => {
     }
 
     const updateTag = tag => {
-    return fetch(`http://localhost:8088/tags/${tag.id}`, {
+    return fetch(`http://localhost:8000/tags/${tag.id}`, {
         method: "PUT",
         headers: {
+            "Authorization": `Token ${localStorage.getItem('rare_user_id')}`,
             "Content-Type": "application/json"
         },
         body: JSON.stringify(tag)
@@ -39,20 +49,35 @@ export const TagProvider = props => {
   }
 
     const deleteTag = (tagId) => {
-    return fetch(`http://localhost:8088/tags/${tagId}`, {
-        method: "DELETE"
+    return fetch(`http://localhost:8000/tags/${tagId}`, {
+        method: "DELETE",
+        headers:{
+            "Authorization": `Token ${localStorage.getItem("rare_user_id_token")}`
+        }
     })
         .then(getTags)
   }
 
+  const createTag = (tag) => {
+    return fetch("http://localhost:8000/tags", {
+        method: "POST", 
+        headers: {
+            "Authorization": `Token ${localStorage.getItem("rare_user_id_token")}`,
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(tag)
+    })
+        .then(setTags)
+    }
 
 
     return (
         <TagContext.Provider value={{
-            tags, addTag, getTags, updateTag, deleteTag, getTagById
+            tags, addTag, getTags, updateTag, deleteTag, getTagById, createTag
         }}>
             {props.children}
         </TagContext.Provider>
     )
-}
+    
 
+}
