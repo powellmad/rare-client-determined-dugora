@@ -13,6 +13,8 @@ export const CategoryList = () => {
         getCategories()
     }, [])
 
+    const sortedCategories = categories.sort((a, b) => a.label > b.label ? 1 : -1)
+
     return (
         <div className="category__page">
             <h1>Categories</h1>
@@ -23,7 +25,7 @@ export const CategoryList = () => {
 
             <div className="categories">
                 {
-                    categories.map(category => {
+                    sortedCategories.map(category => {
                         return <Category key={category.id} category={category}/>
                     })
                 }
