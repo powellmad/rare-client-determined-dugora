@@ -10,8 +10,6 @@ import {PostProvider} from "./posts/PostProvider"
 import { PostList } from "./posts/PostList"
 import { PostDetail } from "./posts/PostDetail"
 import { PostForm} from "./posts/PostForm"
-import {HumanDate} from "./utils/HumanDate"
-// import { PostForm } from "./posts/PostForm"
 
 export const ApplicationViews = (props) => {
     return (
@@ -44,6 +42,11 @@ export const ApplicationViews = (props) => {
             <Route path="/posts/create">
                 <PostForm />
             </Route>
+            
+            <Route path="/posts/edit/:postId(\d+)">
+                <PostForm />
+            </Route>
+
         </PostProvider> 
         
         </CategoryProvider>
