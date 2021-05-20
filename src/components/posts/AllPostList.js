@@ -25,8 +25,10 @@ export const AllPostList = (props) => {
             <div className="posts">
                 {
                     posts.map(post => {
+                        
                         return <Post key={post.id} post={post} />
-                    })
+                    }
+                )
                 }
             </div>
         </>

@@ -46,10 +46,14 @@ export const PostProvider = (props) => {
     }
 
     const deletePost = post => {
-        return fetch(`http://localhost:8000/posts/${post}`, {
-            method: "DELETE"
-        }).then(getPosts);
-    };
+        return fetch(`http://localhost:8000/posts/${ post }`, {
+            method: "DELETE",
+            headers:{
+                "Authorization": `Token ${localStorage.getItem("rare_user_id")}`
+            }
+        })
+            .then(getPosts)
+    }
 
     const updatePost = post => {
         return fetch(`http://localhost:8000/posts/${post.id}`, {
