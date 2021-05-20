@@ -10,11 +10,10 @@ export const PostForm = (props) => {
     const currentdate = new Date().toLocaleString()
 
     const [ post, setPost ] = useState({
-        "userId": 0,
         "categoryId": 0,
         "title": "", 
         "publicationDate": currentdate,
-        "imageUrl": "",
+        "image_url": "",
         "content": ""
     })
     
@@ -32,10 +31,7 @@ export const PostForm = (props) => {
         /* When changing a state object or array, always create a new one and change state instead of modifying current one */
         const newPost = {...post}
         let selectedVal = event.target.value
-        if (event.target.id.includes("Id")) {
-            selectedVal = parseInt(selectedVal)
-          }
-        newPost[event.target.id] = selectedVal
+        newPost[event.target.name] = selectedVal
         setPost(newPost)
     }
 
@@ -49,19 +45,17 @@ export const PostForm = (props) => {
             { postId ?
                 updatePost({
                     id: post.id,
-                    userId: parseInt(localStorage.getItem("rare_user_id")),
                     categoryId: parseInt(post.categoryId),
                     title: post.title,
-                    imageUrl: post.imageUrl,
+                    image_url: post.image_url,
                     content: post.content
                 })
             :
                 addPost({
-                    userId: parseInt(localStorage.getItem("rare_user_id")),
                     categoryId: parseInt(post.categoryId),
                     title: post.title,
                     publicationDate: post.publicationDate,
-                    imageUrl: post.imageUrl,
+                    image_url: post.image_url,
                     content: post.content
                 })
                 .then(() => history.push('/'))
@@ -89,7 +83,7 @@ export const PostForm = (props) => {
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="title">Title: </label>
-                    <input type="text" name="title" required autoFocus className="form-control"
+                    <input value={post.title} type="text" name="title" required autoFocus className="form-control"
                         placeholder="title"
                         onChange={handleControlledInputChange}
                     />
@@ -125,9 +119,9 @@ export const PostForm = (props) => {
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="imageUrl">Upload an Image </label>
-                    <input type="text" name="imageUrl" required className="form-control"
+                    <input type="text" name="image_url" required className="form-control"
                         proptype="varchar"
-                        placeholder="imageUrl"
+                        placeholder="image url"
                         onChange={handleControlledInputChange}
                     />
                     <input type="file" id="myFile" name="filename"/>
