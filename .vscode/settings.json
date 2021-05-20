@@ -1,0 +1,11 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "rare server",
+            "database": "db.sqlite3"
+        }
+    ],
+    "python.pythonPath": "/home/tracyd/.local/share/virtualenvs/rare-rest-rare-api-determined-dugora-cJ6NBRpD/bin/python"
+}
