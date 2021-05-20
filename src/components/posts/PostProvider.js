@@ -7,17 +7,26 @@ export const PostProvider = (props) => {
     const [posts, setPosts] = useState([])
     const [post, setPost] = useState({})
 
+      
+        const getPosts = () => {
+            return fetch("http://localhost:8000/posts", {
+                headers:{
+                    "Authorization": `Token ${localStorage.getItem("rare_user_id")}`
+                }
+            })
+                .then(response => response.json())
+                .then(setPosts)
+        }
 
-    const getPosts = () => {
-        return fetch("http://localhost:8000/", {
-            headers: {
-                "Authorization": `Token ${localStorage.getItem("rare_user_id")}`
-            }
-        })
-            .then(response => response.json())
-            .then(setPosts);
-
-    }
+        const getMyPosts = (id) => {
+            return fetch(`http://localhost:8000/posts?rareuser=${id}`, {
+                headers:{
+                    "Authorization": `Token ${localStorage.getItem("rare_user_id")}`
+                }
+            })
+                .then(response => response.json())
+                .then(setPosts)
+        }
 
     const getPostById = (id) => {
         return fetch(`http://localhost:8000/posts/${id}`)
@@ -54,7 +63,7 @@ export const PostProvider = (props) => {
 
     return (
         <PostContext.Provider value={{
-            posts, post, setPost, getPosts, getPostById, addPost, deletePost, updatePost
+            posts, post, setPost, getPosts, getPostById, addPost, deletePost, updatePost, getMyPosts
         }}>
             {props.children}
         </PostContext.Provider>

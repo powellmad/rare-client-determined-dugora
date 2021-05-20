@@ -1,7 +1,6 @@
 import React, { useEffect, useContext } from "react"
 import "./Post.css"
 import { Link } from "react-router-dom"
-import { CategoryContext } from "../categories/CategoryProvider"
 
 export const Post = ({ post }) => {
 
