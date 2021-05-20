@@ -4,10 +4,10 @@ export const PostContext = createContext()
 
 export const PostProvider = (props) => {
     const [posts, setPosts] = useState([])
-  
+
     const getPosts = () => {
-        return fetch("http://localhost:8000/posts", {
-            headers:{
+        return fetch("http://localhost:8000/", {
+            headers: {
                 "Authorization": `Token ${localStorage.getItem("rare_user_id")}`
             }
         })
@@ -33,7 +33,7 @@ export const PostProvider = (props) => {
 
     const deletePost = post => {
         return fetch(`http://localhost:8000/posts/${post}`, {
-        method: "DELETE"
+            method: "DELETE"
         }).then(getPosts);
     };
 
@@ -52,6 +52,6 @@ export const PostProvider = (props) => {
             posts, getPosts, getPostById, addPost, deletePost, updatePost
         }}>
             {props.children}
-            </PostContext.Provider>
-        )
+        </PostContext.Provider>
+    )
 }

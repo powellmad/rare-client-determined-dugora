@@ -1,11 +1,11 @@
-import React, { useEffect, useContext, useState } from "react"
+import React, { useEffect, useContext } from "react"
 import { PostContext } from "./PostProvider"
 import { Post } from "./Post"
 import "./Post.css"
 import { useHistory } from "react-router-dom"
 
 // this is a list of all the post
-export const PostList = (props) => {
+export const AllPostList = (props) => {
     const { posts, getPosts } = useContext(PostContext)
     const history = useHistory()
 
@@ -16,16 +16,18 @@ export const PostList = (props) => {
 
     return (
         <>
-            <h1>My Post</h1>
+            <h1>Posts</h1>
 
             <button onClick={() => history.push("/posts/create")}>
                 Add Post
-            </button>
+        </button>
 
             <div className="posts">
-                {posts.map(post => {
-                    return <Post key={post.id} post={post} />
-                })}
+                {
+                    posts.map(post => {
+                        return <Post key={post.id} post={post} />
+                    })
+                }
             </div>
         </>
     )
