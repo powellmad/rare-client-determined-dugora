@@ -109,7 +109,7 @@ export const PostForm = (props) => {
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="categoryId">Category: </label>
-                    <select name="categoryId" className="form-control"
+                    <select value={post.categoryId} name="categoryId" id="categoryId" className="form-control"
                         onChange={handleControlledInputChange}>
 
                         <option value="0">Select a Category</option>
@@ -138,7 +138,7 @@ export const PostForm = (props) => {
                 <button className="btn btn-primary" 
                     disabled={isLoading}
                     onClick={HandleSave}>
-                    {postId ? "Update" : "Save"}
+                    {postId ? "Save" : "Post"}
                 </button>
             </div>
         </form>
