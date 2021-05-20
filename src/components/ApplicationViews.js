@@ -36,7 +36,10 @@ export const ApplicationViews = (props) => {
         </UserProvider> 
         <CategoryProvider>
             <PostProvider>
-                <TagProvider>   
+                <TagProvider> 
+                <Route exact path="/">
+                        <AllPostList />
+                    </Route>  
                     <Route exact path="/posts">
                         <PostList />
                     </Route>
@@ -52,6 +55,7 @@ export const ApplicationViews = (props) => {
             </PostProvider>
         </CategoryProvider>
 
+
         <CategoryProvider>
             <Route exact path="/categories">
                 <CategoryList />
@@ -65,22 +69,7 @@ export const ApplicationViews = (props) => {
             </Route>
         </CategoryProvider>
 
-        <CategoryProvider>
-                <PostProvider>
-                    <Route exact path="/">
-                        <AllPostList />
-                    </Route>
-                    <Route exact path="/posts">
-                        <PostList />
-                    </Route>
-                    <Route path="/posts/detail/:postId(\d+)" render={
-                        (props) => { return <PostDetail {...props} /> }
-                    }>
-                    </Route>
-
-                </PostProvider>
-        </CategoryProvider>
-
+        
 
             {/* Tag Area    */}
         <TagProvider>
