@@ -19,6 +19,7 @@ export const PostDetail = (props) => {
 
         <section className="post">
             <h3 className="post_title">{post.title}</h3>
+            <div className="post_category">{post.category.label}</div>
             <a className="post_image_url" href={post.image_url} target="_blank">{post.image_url}</a>
             <div className="post_publication_date">Published: {post.publication_date}</div>
             <div className="post_author">By: {post.rareuser.user.first_name}</div>
