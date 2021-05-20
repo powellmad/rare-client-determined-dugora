@@ -11,7 +11,6 @@ export const PostDetail = (props) => {
     const { postId } = useParams();
 
     useEffect(() => {
-        console.log("useEffect", postId)
         getPostById(postId)
     }, [])
 
