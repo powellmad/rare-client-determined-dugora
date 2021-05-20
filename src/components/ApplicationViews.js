@@ -40,6 +40,9 @@ export const ApplicationViews = (props) => {
                     <Route exact path="/posts">
                         <PostList />
                     </Route>
+                    <Route exact path="/">
+                        <AllPostList />
+                    </Route>
                     <Route path="/posts/detail/:postId(\d+)" render={
                         (props) => {return <PostDetail {...props}/>}
                     }>
@@ -67,12 +70,6 @@ export const ApplicationViews = (props) => {
 
         <CategoryProvider>
                 <PostProvider>
-                    <Route exact path="/">
-                        <AllPostList />
-                    </Route>
-                    <Route exact path="/posts">
-                        <PostList />
-                    </Route>
                     <Route path="/posts/detail/:postId(\d+)" render={
                         (props) => { return <PostDetail {...props} /> }
                     }>
