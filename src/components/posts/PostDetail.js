@@ -20,7 +20,6 @@ export const PostDetail = (props) => {
         <section className="post">
         <h3 className="post_title">{post.title}</h3>
         <div className="post_publication_date">Published: {post.publication_date}</div>
-
         <a className="post_image_url" href={ post.image_url } target="_blank">{ post.image_url }</a>
         <div className="post_content">Content: {post.content}</div>
         <button onClick={() => deletePost(post.id).then(() => props.history.push("/posts"))} >Delete Post</button>
