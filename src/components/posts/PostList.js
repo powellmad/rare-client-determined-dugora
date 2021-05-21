@@ -21,14 +21,12 @@ export const PostList = (props) => {
 
             <button onClick={() => history.push("/posts/create")}>
                 Add Post
-        </button>
+            </button>
 
             <div className="posts">
-                {
-                    posts.map(post => {
-                        return <Post key={post.id} post={post} />
-                    })
-                }
+                {posts.map(post => {
+                    return <Post key={post.id} post={post} />
+                })}
             </div>
         </>
     )

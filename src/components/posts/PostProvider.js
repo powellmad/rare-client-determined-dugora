@@ -1,6 +1,5 @@
 import React, { useState, createContext } from "react"
 
-
 export const PostContext = createContext()
 
 export const PostProvider = (props) => {
@@ -31,18 +30,18 @@ export const PostProvider = (props) => {
     const getPostById = (id) => {
         return fetch(`http://localhost:8000/posts/${id}`)
             .then(res => res.json())
-            .then(setPost);
     }
 
-    const addPost = postObj => {
+    const addPost = (postObj) => {
         return fetch("http://localhost:8000/posts", {
             method: "POST",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Authorization": `Token ${localStorage.getItem("rare_user_id")}`
             },
             body: JSON.stringify(postObj)
         })
-            .then(getPosts)
+        .then(res => res.json())
     }
 
     const deletePost = post => {
@@ -58,11 +57,11 @@ export const PostProvider = (props) => {
 
     const updatePost = post => {
         return fetch(`http://localhost:8000/posts/${post.id}`, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(post)
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(post)
         }).then(getPosts);
     };
 
