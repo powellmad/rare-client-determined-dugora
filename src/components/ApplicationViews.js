@@ -10,19 +10,12 @@ import { PostProvider } from "./posts/PostProvider"
 import { AllPostList } from "./posts/AllPostList"
 import { PostList } from "./posts/PostList"
 import { PostDetail } from "./posts/PostDetail"
-<<<<<<< HEAD
 import { PostForm} from "./posts/PostForm"
 import {HumanDate} from "./utils/HumanDate"
-import {TagProvider} from "./tags/TagProvider"
 import {TagForm} from "./tags/TagForm"
 import {TagList} from "./tags/TagList"
 import { TagSearch } from "./tags/TagSearch";
-=======
-import { PostForm } from "./posts/PostForm"
 import { TagProvider } from "./tags/TagProvider"
-import { TagForm } from "./tags/TagForm"
-import { TagList } from "./tags/TagList"
->>>>>>> main
 // import { PostForm } from "./posts/PostForm"
 
 export const ApplicationViews = (props) => {
@@ -76,13 +69,15 @@ export const ApplicationViews = (props) => {
             <Route path="/categories/edit/:categoryId(\d+)">
                 <CategoryForm />
             </Route>
-        </CategoryProvider>
-
+       
+            <UserProvider>
                 <Route exact path="/users/profile/:userId(\d+)">
                     <UserProfile />
                 </Route>
             </UserProvider>
+        </CategoryProvider>
 
+            
             <CategoryProvider>
                 <PostProvider>
 
@@ -114,7 +109,7 @@ export const ApplicationViews = (props) => {
                 </Route>
 
             {/* Tag Area    */}
-        <TagProvider>
+                <TagProvider>
             <Route exact path="/tags">
                 <TagSearch />
                 <TagList />
@@ -127,7 +122,9 @@ export const ApplicationViews = (props) => {
                 <Route path="/categories/edit/:categoryId(\d+)">
                     <CategoryForm />
                 </Route>
+                </TagProvider>
             </CategoryProvider>
+       
 
             {/* Tag Area    */}
             <TagProvider>

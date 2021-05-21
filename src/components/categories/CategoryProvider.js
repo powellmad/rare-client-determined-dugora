@@ -61,17 +61,6 @@ export const CategoryProvider = (props) => {
             .then(res => res.json())
       }
 
-    const updateCategory = category => {
-        return fetch(`http://localhost:8000/categories/${category.id}`, {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(category)
-        })
-          .then(getCategories)
-    }
-
     return (
         <CategoryContext.Provider value={{
             categories, getCategories, addCategory, getCategoryById, deleteCategory, updateCategory
