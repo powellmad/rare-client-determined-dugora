@@ -7,7 +7,7 @@ export const CategoryProvider = (props) => {
 
     const getCategories = () => {
         return fetch("http://localhost:8000/categories", {
-            headers:{
+            headers: {
                 "Authorization": `Token ${localStorage.getItem("rare_user_id")}`
             }
         })
@@ -24,21 +24,21 @@ export const CategoryProvider = (props) => {
             },
             body: JSON.stringify(category)
         })
-        .then(res => res.json())
+            .then(res => res.json())
     }
 
 
     const deleteCategory = categoryId => {
         return fetch(`http://localhost:8000/categories/${categoryId}`, {
             method: "DELETE",
-            headers:{
+            headers: {
                 "Authorization": `Token ${localStorage.getItem("rare_user_id")}`
             }
         })
             .then(getCategories)
     }
 
-    
+
     const updateCategory = category => {
         return fetch(`http://localhost:8000/categories/${category.id}`, {
             method: "PUT",
@@ -49,28 +49,28 @@ export const CategoryProvider = (props) => {
             body: JSON.stringify(category)
         })
             .then(getCategories)
-      }
+    }
 
 
-      const getCategoryById = (id) => {
+    const getCategoryById = (id) => {
         return fetch(`http://localhost:8000/categories/${id}`, {
             headers: {
-                "Authorization": `Token ${localStorage.getItem('rare_user_id')}`   
-             }
+                "Authorization": `Token ${localStorage.getItem('rare_user_id')}`
+            }
         })
             .then(res => res.json())
-      }
-
-    const updateCategory = category => {
-        return fetch(`http://localhost:8000/categories/${category.id}`, {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(category)
-        })
-          .then(getCategories)
     }
+
+    // const updateCategory = category => {
+    //     return fetch(`http://localhost:8000/categories/${category.id}`, {
+    //       method: "PUT",
+    //       headers: {
+    //         "Content-Type": "application/json"
+    //       },
+    //       body: JSON.stringify(category)
+    //     })
+    //       .then(getCategories)
+    // }
 
     return (
         <CategoryContext.Provider value={{

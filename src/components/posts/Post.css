@@ -8,6 +8,12 @@
     flex-basis: 28%;
     margin: 1em;
     padding: 1em;
+    border: 1px solid rgb(0, 0, 0);
+}
+
+.post_image_url {
+    max-width: 100%;
+    height: auto;
 }
 
 #myFile {
