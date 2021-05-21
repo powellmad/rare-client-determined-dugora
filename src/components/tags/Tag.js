@@ -12,7 +12,7 @@ const handleDeleteTag = () => {
         if (window.confirm('Are you sure you wish to delete this category?')) {
               deleteTag(tag.id)
         .then(() => {
-                    history.push("/categories")
+                    history.push("/tags")
                 })
         }
     }
