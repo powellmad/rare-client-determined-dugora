@@ -78,8 +78,8 @@ export const PostForm = (props) => {
     }, [])
     
     return (
-        <form className="postForm">
-            <h2 className="postForm__title">{postId ? "Edit Post" : "Create Post"}</h2>
+        <form className="post__form">
+            <h2 className="form__title">{postId ? "Edit Post" : "Create Post"}</h2>
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="title">Title: </label>

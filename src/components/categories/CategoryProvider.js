@@ -59,6 +59,9 @@ export const CategoryProvider = (props) => {
             }
         })
             .then(res => res.json())
+<<<<<<< HEAD
+      }
+=======
     }
 
     // const updateCategory = category => {
@@ -71,6 +74,7 @@ export const CategoryProvider = (props) => {
     //     })
     //       .then(getCategories)
     // }
+>>>>>>> main
 
     return (
         <CategoryContext.Provider value={{

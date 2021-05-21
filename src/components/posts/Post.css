@@ -4,7 +4,7 @@
     justify-content: space-between;
 }
 
-.post, .postForm {
+.post, .post__form {
     flex-basis: 28%;
     margin: 1em;
     padding: 1em;
@@ -18,4 +18,8 @@
 
 #myFile {
     margin-top: 2em;
+}
+
+.post__component, .post__form {
+    margin: 5em;
 }

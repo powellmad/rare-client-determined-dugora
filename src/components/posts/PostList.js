@@ -16,7 +16,7 @@ export const PostList = (props) => {
     }, []);
 
     return (
-    <>
+    <div className="post__component">
         <h1>My Posts</h1>
 
             <button onClick={() => history.push("/posts/create")}>
@@ -28,6 +28,6 @@ export const PostList = (props) => {
                     return <Post key={post.id} post={post} />
                 })}
             </div>
-        </>
+        </div>
     )
 }
