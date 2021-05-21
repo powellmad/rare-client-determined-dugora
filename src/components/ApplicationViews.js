@@ -10,12 +10,19 @@ import { PostProvider } from "./posts/PostProvider"
 import { AllPostList } from "./posts/AllPostList"
 import { PostList } from "./posts/PostList"
 import { PostDetail } from "./posts/PostDetail"
+<<<<<<< HEAD
 import { PostForm} from "./posts/PostForm"
 import {HumanDate} from "./utils/HumanDate"
 import {TagProvider} from "./tags/TagProvider"
 import {TagForm} from "./tags/TagForm"
 import {TagList} from "./tags/TagList"
 import { TagSearch } from "./tags/TagSearch";
+=======
+import { PostForm } from "./posts/PostForm"
+import { TagProvider } from "./tags/TagProvider"
+import { TagForm } from "./tags/TagForm"
+import { TagList } from "./tags/TagList"
+>>>>>>> main
 // import { PostForm } from "./posts/PostForm"
 
 export const ApplicationViews = (props) => {
@@ -26,10 +33,12 @@ export const ApplicationViews = (props) => {
                 lineHeight: "1.75rem"
             }}>
             </main>
+
             <UserProvider>
                 <Route exact path="/users">
                     <UserList />
                 </Route>
+
 
             <Route exact path="/users/profile/:userId(\d+)">
                 <UserProfile />
@@ -69,16 +78,40 @@ export const ApplicationViews = (props) => {
             </Route>
         </CategoryProvider>
 
-        <CategoryProvider>
+                <Route exact path="/users/profile/:userId(\d+)">
+                    <UserProfile />
+                </Route>
+            </UserProvider>
+
+            <CategoryProvider>
                 <PostProvider>
-                    <Route path="/posts/detail/:postId(\d+)" render={
-                        (props) => { return <PostDetail {...props} /> }
-                    }>
+
+                    <Route exact path="/">
+                        <AllPostList />
                     </Route>
 
-                </PostProvider>
-        </CategoryProvider>
+                    <Route exact path="/posts">
+                        <PostList />
+                    </Route>
 
+                    <Route path="/posts/detail/:postId(\d+)" render={
+                        (props) => { return <PostDetail {...props} /> }}>
+                    </Route>
+
+                    <Route path="/posts/create">
+                        <PostForm />
+                    </Route>
+
+                    <Route path="/posts/edit/:postId(\d+)">
+                        <PostForm />
+                    </Route>
+                </PostProvider>
+            </CategoryProvider>
+
+            <CategoryProvider>
+                <Route exact path="/categories">
+                    <CategoryList />
+                </Route>
 
             {/* Tag Area    */}
         <TagProvider>
@@ -87,16 +120,29 @@ export const ApplicationViews = (props) => {
                 <TagList />
             </Route>
 
-            <Route exact path="/tags/edit/:tagId(\d+)">
-                <TagForm />
-            </Route>
-            <Route exact path="/tags/create">
-                <TagForm />
-            </Route>
-        </TagProvider>
-   
+                <Route path="/categories/create">
+                    <CategoryForm />
+                </Route>
 
-   
+                <Route path="/categories/edit/:categoryId(\d+)">
+                    <CategoryForm />
+                </Route>
+            </CategoryProvider>
+
+            {/* Tag Area    */}
+            <TagProvider>
+                <Route exact path="/tags">
+                    <TagList />
+                </Route>
+
+                <Route exact path="/tags/edit/:tagId(\d+)">
+                    <TagForm />
+                </Route>
+                
+                <Route exact path="/tags/create">
+                    <TagForm />
+                </Route>
+            </TagProvider>
         </>
     )
 }
