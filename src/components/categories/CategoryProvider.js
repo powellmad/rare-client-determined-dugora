@@ -74,8 +74,7 @@ export const CategoryProvider = (props) => {
     //     })
     //       .then(getCategories)
     // }
->>>>>>> main
->>>>>>> main
+
 
     return (
         <CategoryContext.Provider value={{
