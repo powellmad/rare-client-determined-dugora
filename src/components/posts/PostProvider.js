@@ -1,11 +1,9 @@
 import React, { useState, createContext } from "react"
 
-
 export const PostContext = createContext()
 
 export const PostProvider = (props) => {
     const [posts, setPosts] = useState([])
-    const [post, setPost] = useState({})
 
 
     const getPosts = () => {
@@ -35,21 +33,21 @@ export const PostProvider = (props) => {
             }
         })
             .then(res => res.json())
-        // .then(setPost);
     }
 
-    const addPost = postObj => {
+    const addPost = (postObj) => {
         return fetch("http://localhost:8000/posts", {
             method: "POST",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Authorization": `Token ${localStorage.getItem("rare_user_id")}`
             },
             body: JSON.stringify(postObj)
         })
-            .then(getPosts)
+            .then(res => res.json())
     }
 
-    const deletePost = post => {
+    const deletePost = (post) => {
         return fetch(`http://localhost:8000/posts/${post}`, {
             method: "DELETE"
         }).then(getPosts);
@@ -67,7 +65,7 @@ export const PostProvider = (props) => {
 
     return (
         <PostContext.Provider value={{
-            posts, post, setPost, getPosts, getPostById, addPost, deletePost, updatePost, getMyPosts
+            posts, getPosts, getPostById, addPost, deletePost, updatePost, getMyPosts
         }}>
             {props.children}
         </PostContext.Provider>
