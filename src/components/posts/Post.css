@@ -4,12 +4,22 @@
     justify-content: space-between;
 }
 
-.post, .postForm {
+.post, .post__form {
     flex-basis: 28%;
     margin: 1em;
     padding: 1em;
+    border: 1px solid rgb(0, 0, 0);
+}
+
+.post_image_url {
+    max-width: 100%;
+    height: auto;
 }
 
 #myFile {
     margin-top: 2em;
+}
+
+.post__component, .post__form {
+    margin: 5em;
 }

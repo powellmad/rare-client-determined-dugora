@@ -2,10 +2,10 @@
     margin-left: 30px;
 }
 
-.category__page {
-    margin-left: 30px;
-}
-
 #edit__button, #delete__button {
     margin-right: 20px;
+}
+
+.category__component, .category__form {
+    margin: 5em;
 }

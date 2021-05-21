@@ -16,7 +16,7 @@ export const CategoryList = () => {
     const sortedCategories = categories.sort((a, b) => a.label > b.label ? 1 : -1)
 
     return (
-        <div className="category__page">
+        <div className="category__component">
             <h1>Categories</h1>
 
             <button onClick={() => history.push("/categories/create")}>

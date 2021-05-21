@@ -4,31 +4,34 @@ export const PostContext = createContext()
 
 export const PostProvider = (props) => {
     const [posts, setPosts] = useState([])
-    const [post, setPost] = useState({})
 
-      
-        const getPosts = () => {
-            return fetch("http://localhost:8000/posts", {
-                headers:{
-                    "Authorization": `Token ${localStorage.getItem("rare_user_id")}`
-                }
-            })
-                .then(response => response.json())
-                .then(setPosts)
-        }
 
-        const getMyPosts = (id) => {
-            return fetch(`http://localhost:8000/posts?rareuser=${id}`, {
-                headers:{
-                    "Authorization": `Token ${localStorage.getItem("rare_user_id")}`
-                }
-            })
-                .then(response => response.json())
-                .then(setPosts)
-        }
+    const getPosts = () => {
+        return fetch("http://localhost:8000/posts", {
+            headers: {
+                "Authorization": `Token ${localStorage.getItem("rare_user_id")}`
+            }
+        })
+            .then(response => response.json())
+            .then(setPosts)
+    }
+
+    const getMyPosts = (id) => {
+        return fetch(`http://localhost:8000/posts?rareuser=${id}`, {
+            headers: {
+                "Authorization": `Token ${localStorage.getItem("rare_user_id")}`
+            }
+        })
+            .then(response => response.json())
+            .then(setPosts)
+    }
 
     const getPostById = (id) => {
-        return fetch(`http://localhost:8000/posts/${id}`)
+        return fetch(`http://localhost:8000/posts/${id}`, {
+            headers: {
+                "Authorization": `Token ${localStorage.getItem("rare_user_id")}`
+            }
+        })
             .then(res => res.json())
     }
 
@@ -41,7 +44,7 @@ export const PostProvider = (props) => {
             },
             body: JSON.stringify(postObj)
         })
-        .then(res => res.json())
+            .then(res => res.json())
     }
 
     const deletePost = post => {
@@ -57,17 +60,17 @@ export const PostProvider = (props) => {
 
     const updatePost = post => {
         return fetch(`http://localhost:8000/posts/${post.id}`, {
-        method: "PUT",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(post)
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(post)
         }).then(getPosts);
     };
 
     return (
         <PostContext.Provider value={{
-            posts, post, setPost, getPosts, getPostById, addPost, deletePost, updatePost, getMyPosts
+            posts, getPosts, getPostById, addPost, deletePost, updatePost, getMyPosts
         }}>
             {props.children}
         </PostContext.Provider>

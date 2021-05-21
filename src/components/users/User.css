@@ -1,9 +1,5 @@
-.user-component {
-    margin: 20px;
-}
-
-.user-component h2 {
-    text-align: center;
+.user__component {
+    margin: 5em;
 }
 
 .profile {
