@@ -54,6 +54,10 @@ export const ApplicationViews = (props) => {
                     <Route path="/posts/create">
                         <PostForm />
                     </Route>
+                    
+                    <Route path="/posts/edit/:postId(\d+)">
+                        <PostForm />
+                    </Route>
                 </TagProvider>
             </PostProvider>
         </CategoryProvider>
@@ -78,54 +82,6 @@ export const ApplicationViews = (props) => {
         </CategoryProvider>
 
             
-            <CategoryProvider>
-                <PostProvider>
-
-                    <Route exact path="/">
-                        <AllPostList />
-                    </Route>
-
-                    <Route exact path="/posts">
-                        <PostList />
-                    </Route>
-
-                    <Route path="/posts/detail/:postId(\d+)" render={
-                        (props) => { return <PostDetail {...props} /> }}>
-                    </Route>
-
-                    <Route path="/posts/create">
-                        <PostForm />
-                    </Route>
-
-                    <Route path="/posts/edit/:postId(\d+)">
-                        <PostForm />
-                    </Route>
-                </PostProvider>
-            </CategoryProvider>
-
-            <CategoryProvider>
-                <Route exact path="/categories">
-                    <CategoryList />
-                </Route>
-
-            {/* Tag Area    */}
-                <TagProvider>
-            <Route exact path="/tags">
-                <TagSearch />
-                <TagList />
-            </Route>
-
-                <Route path="/categories/create">
-                    <CategoryForm />
-                </Route>
-
-                <Route path="/categories/edit/:categoryId(\d+)">
-                    <CategoryForm />
-                </Route>
-                </TagProvider>
-            </CategoryProvider>
-       
-
             {/* Tag Area    */}
             <TagProvider>
                 <Route exact path="/tags">
