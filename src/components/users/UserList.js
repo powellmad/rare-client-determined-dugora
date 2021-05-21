@@ -11,8 +11,8 @@ export const UserList = (props) => {
     }, [])
 
   return (
-    <div className="user-component">
-    <h2>Users</h2>
+    <div className="user__component">
+    <h1>Users</h1>
       <div className="user__list">
         {
           users.map(user => {
