@@ -15,6 +15,7 @@ import {HumanDate} from "./utils/HumanDate"
 import {TagProvider} from "./tags/TagProvider"
 import {TagForm} from "./tags/TagForm"
 import {TagList} from "./tags/TagList"
+import { TagSearch } from "./tags/TagSearch";
 // import { PostForm } from "./posts/PostForm"
 
 export const ApplicationViews = (props) => {
@@ -82,6 +83,7 @@ export const ApplicationViews = (props) => {
             {/* Tag Area    */}
         <TagProvider>
             <Route exact path="/tags">
+                <TagSearch />
                 <TagList />
             </Route>
 

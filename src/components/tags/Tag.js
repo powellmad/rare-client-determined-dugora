@@ -9,7 +9,10 @@ const history = useHistory()
 const {deleteTag} = useContext(TagContext)
 
 const handleDeleteTag = () => {
-  console.log("click")
+  // console.log("click")
+  if (tag.label && tag.id) {
+    window.alert("Are you sure you want to delete??")
+  }
   deleteTag(tag.id)
 
 }
