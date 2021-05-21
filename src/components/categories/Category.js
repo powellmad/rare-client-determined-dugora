@@ -12,11 +12,14 @@ export const Category = ( { category } ) => {
     const {categoryId} = useParams();
 
     const handleDelete = () => {
-        deleteCategory(category.id)
-          .then(() => {
-            history.push("/categories")
-          })
-      }
+        if (window.confirm('Are you sure you wish to delete this category?')) {
+            deleteCategory(category.id)
+                .then(() => {
+                    history.push("/categories")
+                })
+
+        }
+    }
 
 
 
