@@ -13,3 +13,14 @@
 #myFile {
     margin-top: 2em;
 }
+
+
+
+.posttags {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.posttag {
+    width: 10em;
+}

@@ -11,15 +11,15 @@ export const PostForm = (props) => {
     const { tags, getTags } = useContext(TagContext)
     const currentdate = new Date().toLocaleString()
 
-    const [ post, setPost ] = useState({
+    const [post, setPost] = useState({
         "categoryId": 0,
-        "title": "", 
+        "title": "",
         "publicationDate": currentdate,
         "image_url": "",
         "content": "",
-        "tagId": 0
+        "tagId": []
     })
-    
+
     const [isLoading, setIsLoading] = useState(true);
     const { postId } = useParams();
     const history = useHistory()
@@ -27,13 +27,13 @@ export const PostForm = (props) => {
 
     useEffect(() => {
         getCategories()
-        .then(getTags)
-        .then(getPosts)
+            .then(getTags)
+            .then(getPosts)
     }, [])
 
     const handleControlledInputChange = (event) => {
         /* When changing a state object or array, always create a new one and change state instead of modifying current one */
-        const newPost = {...post}
+        const newPost = { ...post }
         let selectedVal = event.target.value
         newPost[event.target.name] = selectedVal
         setPost(newPost)
@@ -42,27 +42,28 @@ export const PostForm = (props) => {
     const HandleSave = (event) => {
         const categoryId = post.categoryId
 
-        if (categoryId === 0 ) {
-            window.alert("Please select a category")  
+        if (categoryId === 0) {
+            window.alert("Please select a category")
         } else {
             setIsLoading(true);
-            { postId ?
-                updatePost({
-                    id: post.id,
-                    categoryId: parseInt(post.categoryId),
-                    title: post.title,
-                    image_url: post.image_url,
-                    content: post.content
-                })
-            :
-                addPost({
-                    categoryId: parseInt(post.categoryId),
-                    title: post.title,
-                    publicationDate: post.publicationDate,
-                    image_url: post.image_url,
-                    content: post.content
-                })
-                .then(() => history.push('/'))
+            {
+                postId ?
+                    updatePost({
+                        id: post.id,
+                        categoryId: parseInt(post.categoryId),
+                        title: post.title,
+                        image_url: post.image_url,
+                        content: post.content
+                    })
+                    :
+                    addPost({
+                        categoryId: parseInt(post.categoryId),
+                        title: post.title,
+                        publicationDate: post.publicationDate,
+                        image_url: post.image_url,
+                        content: post.content
+                    })
+                        .then(() => history.push('/'))
             }
         }
     }
@@ -70,17 +71,17 @@ export const PostForm = (props) => {
     useEffect(() => {
         getCategories().then(() => {
             if (postId) {
-            getPostById(postId)
-                .then(post => {
-                setPost(post)
-                setIsLoading(false)
-                })
+                getPostById(postId)
+                    .then(post => {
+                        setPost(post)
+                        setIsLoading(false)
+                    })
             } else {
-            setIsLoading(false)
+                setIsLoading(false)
             }
         })
     }, [])
-    
+
     return (
         <form className="postForm">
             <h2 className="postForm__title">{postId ? "Edit Post" : "Create Post"}</h2>
@@ -102,18 +103,18 @@ export const PostForm = (props) => {
                         placeholder="image url"
                         onChange={handleControlledInputChange}
                     />
-                    <input type="file" id="myFile" name="filename"/>
+                    <input type="file" id="myFile" name="filename" />
                 </div>
             </fieldset>
 
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="content">Write Post: </label>
-                    <textarea 
-                    name="content" 
-                    required autoFocus className="form-control"
-                    placeholder="Begin new post..." 
-                    onChange={handleControlledInputChange}>
+                    <textarea
+                        name="content"
+                        required autoFocus className="form-control"
+                        placeholder="Begin new post..."
+                        onChange={handleControlledInputChange}>
                     </textarea>
                 </div>
             </fieldset>
@@ -132,21 +133,22 @@ export const PostForm = (props) => {
                     </select>
                 </div>
             </fieldset>
-            
+
             <fieldset>
-                <div className="form-group">
+                <div className="form-group posttags">
                     {tags.map(t => (
-                        <input type="checkbox" id={t.id} name={t.id} value={t.id} 
-                        onChange={handleControlledInputChange} className="form-control">
-                        <label for={t.id}>{t.label}</label>
-                        </input>
+                        <>
+                            <input type="checkbox" id={t.id} name={t.id} value={t.id}
+                                onChange={handleControlledInputChange} className="form-control posttag" />
+                            <p>{t.label}</p>
+                        </>
                     ))}
 
                 </div>
             </fieldset>
-                            
+
             <div>
-                <button className="btn btn-primary" 
+                <button className="btn btn-primary"
                     disabled={isLoading}
                     onClick={HandleSave}>
                     {postId ? "Save" : "Post"}
