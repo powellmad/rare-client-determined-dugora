@@ -1,11 +1,26 @@
-import React, { useEffect, useContext } from "react"
+import React, { useEffect, useContext, useRef } from "react"
 import "./Post.css"
 import { Link } from "react-router-dom"
 import { PostContext } from "./PostProvider.js"
 
 export const Post = ({ post }) => {
-    console.log('post: ', post);
-    const { posts, deletePost } = useContext(PostContext)
+    const { deletePost } = useContext(PostContext)
+    const deleteWarning = useRef()
+
+    const handleDeleteWarning = event => {
+        deleteWarning.current.showModal()
+    }
+
+    const handleCloseModal = () => {
+        deleteWarning.current.close()
+    }
+
+    const handleClickDelete = () => {
+        deletePost(post.id)
+        handleCloseModal()
+    }
+
+    
 
     return (
         <section className="post">
@@ -22,11 +37,16 @@ export const Post = ({ post }) => {
 
             <div className="post_imageUrl">{post.imageUrl}</div>
 
+            <dialog className="dialog dialog--auth" ref={deleteWarning}>
+                <div>Are you sure you want to delete this post?</div>
+                <button className="button--close" onClick={handleCloseModal}>Cancel</button>
+                <button className="button--close" onClick={handleClickDelete}>Confirm</button>
+            </dialog>
+
             {
                 post.user.user.id === parseInt(localStorage.getItem('user_id')) ?
-                    <button className="btn btn-3"
-                    onClick={() => deletePost(post.id)}
-                    >Delete</button>
+                    <button className="btn btn-3" id={post.id}
+                    onClick={handleDeleteWarning}>Delete</button>
                     :
                     ""
             }

@@ -53,6 +53,7 @@ export const PostProvider = (props) => {
             }
         })
             .then(getPosts)
+            .then(getMyPosts)
     }
 
     const updatePost = post => {
