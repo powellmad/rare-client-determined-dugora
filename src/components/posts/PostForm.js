@@ -21,6 +21,7 @@ export const PostForm = (props) => {
     })
 
     const [isLoading, setIsLoading] = useState(true);
+    const [isSelected, setIsSelected] = useState(false);
     const { postId } = useParams();
     const history = useHistory()
 
@@ -143,7 +144,6 @@ export const PostForm = (props) => {
                             <p>{t.label}</p>
                         </>
                     ))}
-
                 </div>
             </fieldset>
 
