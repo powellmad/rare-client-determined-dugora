@@ -7,13 +7,24 @@ import "./Tag.css"
 export const TagList = () => {
     const { getTags, tags, searchTerms } = useContext(TagContext)
 
-    const [ filteredTags, setFilteredTags] = useState([])
+    const [ filteredTags, setFiltered ] = useState([])
 
     const history = useHistory()
 
     useEffect(() => {
         getTags()
     }, [])
+
+       useEffect(() => {
+        if (searchTerms !== "") {
+            // If the search field is not blank, display matching tags
+            const tagSearch = tags.filter(tag => tag.label.toLowerCase().includes(searchTerms))
+            setFiltered(tagSearch)
+        } else {
+            // If the search field is blank, display all tags
+            setFiltered(tags)
+        }
+        }, [searchTerms, tags])
 
 
 

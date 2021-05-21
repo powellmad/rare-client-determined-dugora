@@ -9,10 +9,13 @@ const history = useHistory()
 const {deleteTag} = useContext(TagContext)
 
 const handleDeleteTag = () => {
-  console.log("click")
-  deleteTag(tag.id)
-
-}
+        if (window.confirm('Are you sure you wish to delete this category?')) {
+              deleteTag(tag.id)
+        .then(() => {
+                    history.push("/tags")
+                })
+        }
+    }
 
 
 
