@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react"
+import React from "react"
 import "./Post.css"
 import { Link } from "react-router-dom"
 
@@ -12,12 +12,9 @@ export const Post = ({ post }) => {
                 </Link>
             </h3>
 
-            {/* <div className="post_content">{post.publication_date}</div> */}
-            <div className="post_content">{post.content}</div>
+            <div className="post_author">{post.user.user.first_name} {post.user.user.last_name}</div>
 
-            <div className="post_category">{post.category.label}</div>
-
-            <div className="post_imageUrl">{post.imageUrl}</div>
+            <div className="post_category">{post.category.label}</div>            
         </section>
 
     )

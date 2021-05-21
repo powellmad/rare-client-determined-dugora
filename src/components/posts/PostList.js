@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom"
 
 // this is a list of all the post
 export const PostList = (props) => {
-    const { posts, getPosts, getMyPosts } = useContext(PostContext)
+    const { posts, getMyPosts } = useContext(PostContext)
     const currentUser = parseInt(localStorage.getItem('rare_user_id'))
     const history = useHistory()
 

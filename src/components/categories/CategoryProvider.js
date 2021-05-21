@@ -59,12 +59,9 @@ export const CategoryProvider = (props) => {
             }
         })
             .then(res => res.json())
-
       }
 
-
- 
-
+      
     return (
         <CategoryContext.Provider value={{
             categories, getCategories, addCategory, getCategoryById, deleteCategory, updateCategory
