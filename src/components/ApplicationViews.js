@@ -11,6 +11,10 @@ import { AllPostList } from "./posts/AllPostList"
 import { PostList } from "./posts/PostList"
 import { PostDetail } from "./posts/PostDetail"
 import { PostForm } from "./posts/PostForm"
+import { TagProvider } from "./tags/TagProvider"
+import { TagForm } from "./tags/TagForm"
+import { TagList } from "./tags/TagList"
+// import { PostForm } from "./posts/PostForm"
 
 export const ApplicationViews = (props) => {
     return (
@@ -52,11 +56,6 @@ export const ApplicationViews = (props) => {
                     <Route path="/posts/edit/:postId(\d+)">
                         <PostForm />
                     </Route>
-                    <Route path="/posts/detail/:postId(\d+)" render={
-                        (props) => { return <PostDetail {...props} /> }
-                    }>
-                    </Route>
-
                 </PostProvider>
             </CategoryProvider>
 
@@ -73,6 +72,21 @@ export const ApplicationViews = (props) => {
                     <CategoryForm />
                 </Route>
             </CategoryProvider>
+
+            {/* Tag Area    */}
+            <TagProvider>
+                <Route exact path="/tags">
+                    <TagList />
+                </Route>
+
+                <Route exact path="/tags/edit/:tagId(\d+)">
+                    <TagForm />
+                </Route>
+                
+                <Route exact path="/tags/create">
+                    <TagForm />
+                </Route>
+            </TagProvider>
         </>
     )
 }
