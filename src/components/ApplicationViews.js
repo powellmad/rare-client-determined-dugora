@@ -10,11 +10,10 @@ import { PostProvider } from "./posts/PostProvider"
 import { AllPostList } from "./posts/AllPostList"
 import { PostList } from "./posts/PostList"
 import { PostDetail } from "./posts/PostDetail"
-import { PostForm} from "./posts/PostForm"
-import {HumanDate} from "./utils/HumanDate"
-import {TagProvider} from "./tags/TagProvider"
-import {TagForm} from "./tags/TagForm"
-import {TagList} from "./tags/TagList"
+import { PostForm } from "./posts/PostForm"
+import { TagProvider } from "./tags/TagProvider"
+import { TagForm } from "./tags/TagForm"
+import { TagList } from "./tags/TagList"
 // import { PostForm } from "./posts/PostForm"
 
 export const ApplicationViews = (props) => {
@@ -25,68 +24,69 @@ export const ApplicationViews = (props) => {
                 lineHeight: "1.75rem"
             }}>
             </main>
+
             <UserProvider>
                 <Route exact path="/users">
                     <UserList />
                 </Route>
 
-            <Route exact path="/users/profile/:userId(\d+)">
-                <UserProfile />
-            </Route>
-        </UserProvider> 
-        <CategoryProvider>
-            <PostProvider>
-                <TagProvider> 
-                <Route exact path="/">
+                <Route exact path="/users/profile/:userId(\d+)">
+                    <UserProfile />
+                </Route>
+            </UserProvider>
+
+            <CategoryProvider>
+                <PostProvider>
+                    <Route exact path="/">
                         <AllPostList />
-                    </Route>  
+                    </Route>
+
                     <Route exact path="/posts">
                         <PostList />
                     </Route>
+
                     <Route path="/posts/detail/:postId(\d+)" render={
-                        (props) => {return <PostDetail {...props}/>}
-                    }>
-                        
+                        (props) => { return <PostDetail {...props} /> }}>
                     </Route>
+
                     <Route path="/posts/create">
                         <PostForm />
                     </Route>
-                </TagProvider>
-            </PostProvider>
-        </CategoryProvider>
 
+                    <Route path="/posts/edit/:postId(\d+)">
+                        <PostForm />
+                    </Route>
+                </PostProvider>
+            </CategoryProvider>
 
-        <CategoryProvider>
-            <Route exact path="/categories">
-                <CategoryList />
-            </Route>
+            <CategoryProvider>
+                <Route exact path="/categories">
+                    <CategoryList />
+                </Route>
 
-            <Route path="/categories/create">
+                <Route path="/categories/create">
                     <CategoryForm />
-            </Route>
-            <Route path="/categories/edit/:categoryId(\d+)">
-                <CategoryForm />
-            </Route>
-        </CategoryProvider>
+                </Route>
 
-        
+                <Route path="/categories/edit/:categoryId(\d+)">
+                    <CategoryForm />
+                </Route>
+            </CategoryProvider>
 
             {/* Tag Area    */}
-        <TagProvider>
-            <Route exact path="/tags">
-                <TagList />
-            </Route>
+            <TagProvider>
+                <Route exact path="/tags">
+                    <TagList />
+                </Route>
 
-            <Route exact path="/tags/edit/:tagId(\d+)">
-                <TagForm />
-            </Route>
-            <Route exact path="/tags/create">
-                <TagForm />
-            </Route>
-        </TagProvider>
-   
-
-   
+                <Route exact path="/tags/edit/:tagId(\d+)">
+                    <TagForm />
+                </Route>
+                
+                <Route exact path="/tags/create">
+                    <TagForm />
+                </Route>
+            </TagProvider>
         </>
     )
 }
