@@ -39,16 +39,27 @@ export const CategoryProvider = (props) => {
     }
 
     
-    const getCategoryById = (categoryId) => {
-        return fetch(`http://localhost:8000/categories/${categoryId}`, {
-    
-            headers:{
-                "Authorization": `Token ${localStorage.getItem("rare_user_id")}`
+    const updateCategory = category => {
+        return fetch(`http://localhost:8000/categories/${category.id}`, {
+            method: "PUT",
+            headers: {
+                "Authorization": `Token ${localStorage.getItem('rare_user_id')}`,
+                "Content-Type": "application/json"
             },
+            body: JSON.stringify(category)
         })
-            .then(response => response.json())
             .then(getCategories)
-    }
+      }
+
+
+      const getCategoryById = (id) => {
+        return fetch(`http://localhost:8000/categories/${id}`, {
+            headers: {
+                "Authorization": `Token ${localStorage.getItem('rare_user_id')}`   
+             }
+        })
+            .then(res => res.json())
+      }
 
     const updateCategory = category => {
         return fetch(`http://localhost:8000/categories/${category.id}`, {
@@ -63,7 +74,7 @@ export const CategoryProvider = (props) => {
 
     return (
         <CategoryContext.Provider value={{
-            categories, getCategories, addCategory, getCategoryById, updateCategory, deleteCategory
+            categories, getCategories, addCategory, getCategoryById, deleteCategory, updateCategory
         }}>
             {props.children}
         </CategoryContext.Provider>
