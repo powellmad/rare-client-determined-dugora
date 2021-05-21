@@ -21,7 +21,7 @@ export const PostDetail = (props) => {
             <h3 className="post_title">{post.title}</h3>
             <div className="post_category">{post.category?.label}</div>
             <img className="post_image_url" src={post.image_url} />
-            <div className="post_publication_date">Published: {post.publication_date}</div>
+            <div className="post_publication_date">Published: {new Date(post.publication_date).toLocaleDateString()}</div>
             <div className="post_author">By: {post.user?.user.first_name} {post.user?.user.last_name}</div>
             <div className="post_content">{post.content}</div>
 
