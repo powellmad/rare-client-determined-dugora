@@ -36,27 +36,29 @@ export const ApplicationViews = (props) => {
             </UserProvider>
 
             <CategoryProvider>
-                <PostProvider>
-                    <Route exact path="/">
-                        <AllPostList />
-                    </Route>
+                <TagProvider>
+                    <PostProvider>
+                        <Route exact path="/">
+                            <AllPostList />
+                        </Route>
 
-                    <Route exact path="/posts">
-                        <PostList />
-                    </Route>
+                        <Route exact path="/posts">
+                            <PostList />
+                        </Route>
 
-                    <Route path="/posts/detail/:postId(\d+)" render={
-                        (props) => { return <PostDetail {...props} /> }}>
-                    </Route>
+                        <Route path="/posts/detail/:postId(\d+)" render={
+                            (props) => { return <PostDetail {...props} /> }}>
+                        </Route>
 
-                    <Route path="/posts/create">
-                        <PostForm />
-                    </Route>
+                        <Route path="/posts/create">
+                            <PostForm />
+                        </Route>
 
-                    <Route path="/posts/edit/:postId(\d+)">
-                        <PostForm />
-                    </Route>
-                </PostProvider>
+                        <Route path="/posts/edit/:postId(\d+)">
+                            <PostForm />
+                        </Route>
+                    </PostProvider>
+                </TagProvider>
             </CategoryProvider>
 
             <CategoryProvider>
@@ -82,7 +84,7 @@ export const ApplicationViews = (props) => {
                 <Route exact path="/tags/edit/:tagId(\d+)">
                     <TagForm />
                 </Route>
-                
+
                 <Route exact path="/tags/create">
                     <TagForm />
                 </Route>

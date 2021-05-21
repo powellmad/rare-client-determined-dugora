@@ -1,12 +1,14 @@
 import React, { useContext, useState, useEffect } from "react"
 import { PostContext } from "./PostProvider"
 import { CategoryContext } from "../categories/CategoryProvider"
+import { TagContext } from "../tags/TagProvider"
 import { useHistory, useParams } from 'react-router-dom'
 import "./Post.css"
 
 export const PostForm = (props) => {
     const { posts, getPosts, getPostById, addPost, updatePost } = useContext(PostContext)
     const { categories, getCategories } = useContext(CategoryContext)
+    const { tags, getTags } = useContext(TagContext)
     const currentdate = new Date().toLocaleString()
 
     const [ post, setPost ] = useState({
@@ -14,7 +16,8 @@ export const PostForm = (props) => {
         "title": "", 
         "publicationDate": currentdate,
         "image_url": "",
-        "content": ""
+        "content": "",
+        "tagId": 0
     })
     
     const [isLoading, setIsLoading] = useState(true);
@@ -24,6 +27,7 @@ export const PostForm = (props) => {
 
     useEffect(() => {
         getCategories()
+        .then(getTags)
         .then(getPosts)
     }, [])
 
@@ -84,11 +88,24 @@ export const PostForm = (props) => {
                 <div className="form-group">
                     <label htmlFor="title">Title: </label>
                     <input value={post.title} type="text" name="title" required autoFocus className="form-control"
-                        placeholder="title"
+                        placeholder="Title"
                         onChange={handleControlledInputChange}
                     />
                 </div>
             </fieldset>
+
+            <fieldset>
+                <div className="form-group">
+                    <label htmlFor="imageUrl">Upload an Image </label>
+                    <input type="text" name="image_url" required className="form-control"
+                        proptype="varchar"
+                        placeholder="image url"
+                        onChange={handleControlledInputChange}
+                    />
+                    <input type="file" id="myFile" name="filename"/>
+                </div>
+            </fieldset>
+
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="content">Write Post: </label>
@@ -115,19 +132,19 @@ export const PostForm = (props) => {
                     </select>
                 </div>
             </fieldset>
-
+            
             <fieldset>
                 <div className="form-group">
-                    <label htmlFor="imageUrl">Upload an Image </label>
-                    <input type="text" name="image_url" required className="form-control"
-                        proptype="varchar"
-                        placeholder="image url"
-                        onChange={handleControlledInputChange}
-                    />
-                    <input type="file" id="myFile" name="filename"/>
+                    {tags.map(t => (
+                        <input type="checkbox" id={t.id} name={t.id} value={t.id} 
+                        onChange={handleControlledInputChange} className="form-control">
+                        <label for={t.id}>{t.label}</label>
+                        </input>
+                    ))}
+
                 </div>
             </fieldset>
-
+                            
             <div>
                 <button className="btn btn-primary" 
                     disabled={isLoading}
