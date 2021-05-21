@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from "react"
 import { useHistory, useParams } from 'react-router-dom';
 import { TagContext } from "./TagProvider.js";
+import "./Tag.css"
 
 
 export const TagForm = (props) => {
@@ -60,7 +61,7 @@ export const TagForm = (props) => {
 
 
     return (
-      <form className="tagForm">
+      <form className="tagForm tag__form">
           <h2 className="tagForm__title">{tagId ? "Edit Tag" : "Add Tag"}</h2>
           <fieldset>
               <div className="form-group">
