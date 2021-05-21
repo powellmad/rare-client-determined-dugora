@@ -18,6 +18,7 @@ export const PostDetail = (props) => {
     return (
 
         <section className="post">
+
             <h3 className="post_title">{post.title}</h3>
             <div className="post_category">{post.category?.label}</div>
             <img className="post_image_url" src={post.image_url} />
