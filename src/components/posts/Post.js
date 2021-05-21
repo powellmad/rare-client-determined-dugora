@@ -4,6 +4,7 @@ import { Link } from "react-router-dom"
 import { PostContext } from "./PostProvider.js"
 
 export const Post = ({ post }) => {
+    console.log('post: ', post);
     const { posts, deletePost } = useContext(PostContext)
 
     return (
@@ -22,8 +23,7 @@ export const Post = ({ post }) => {
             <div className="post_imageUrl">{post.imageUrl}</div>
 
             {
-                post.user === parseInt(localStorage.getItem('rare_user_id')) ?
-
+                post.user.user.id === parseInt(localStorage.getItem('user_id')) ?
                     <button className="btn btn-3"
                     onClick={() => deletePost(post.id)}
                     >Delete</button>
